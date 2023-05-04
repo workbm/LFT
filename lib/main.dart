@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:lft_new_project/provider/auth/seconnecter_sinscrire_provider.dart';
 import 'package:lft_new_project/router.dart';
-import 'package:lft_new_project/screens/intro/screen_1.dart';
+import 'package:lft_new_project/screens/auth/login.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SeconnecterSinscrireProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +27,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const Screen1(),
+      home: const Login(),
+      builder: (context, child) => GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+        child: child,
+      ),
     );
   }
 }

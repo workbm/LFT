@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lft_new_project/screens/intro/screen_3.dart';
 
 import 'screen_2.dart';
 
@@ -13,10 +12,7 @@ class Screen1 extends StatelessWidget {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity == 0) return;
-
         if (details.primaryVelocity!.compareTo(0) == -1) {
-          Navigator.pushNamed(context, Screen3.routeName);
-        } else {
           Navigator.pushNamed(context, Screen2.routeName);
         }
       },

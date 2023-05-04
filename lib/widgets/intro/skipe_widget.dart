@@ -13,7 +13,7 @@ class SkipeWidget extends StatelessWidget {
           'Skipe',
           style: TextStyle(
             color: CommonColors.lightBlue,
-            fontSize: 25,
+            fontSize: 18,
           ),
         ),
       ],
