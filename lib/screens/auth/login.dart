@@ -17,40 +17,42 @@ class Login extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                Container(
-                  height: size.height - MediaQuery.of(context).padding.top,
-                  width: size.width,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image:
-                          AssetImage('assets/img/background-image-login.png'),
-                      fit: BoxFit.cover,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  Container(
+                    height: size.height - MediaQuery.of(context).padding.top,
+                    width: size.width,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                            AssetImage('assets/img/background-image-login.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: PaddingWidget(
+                      horizontal: 15,
+                      vertical: 5,
+                      child: Center(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SeConnecterSinscrireWidget(),
+                              Gap(height: size.height * 0.025),
+                              listenData.isSeconnecter
+                                  ? const LoginCredentialWidget()
+                                  : const SinscrireCredentialWidget(),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  child: PaddingWidget(
-                    horizontal: 15,
-                    vertical: 5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SeConnecterSinscrireWidget(),
-                        Gap(height: size.height * 0.025),
-                        listenData.isSeconnecter
-                            ? const LoginCredentialWidget()
-                            : const Expanded(
-                                child: SingleChildScrollView(
-                                  child: SinscrireCredentialWidget(),
-                                ),
-                              ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
