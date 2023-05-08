@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lft_new_project/common/utils/api.dart';
+import 'package:lft_new_project/common/utils/http_exception.dart';
 import 'package:lft_new_project/models/user_model.dart';
 
 class SignupProvider with ChangeNotifier {
-  UserModel _userModel = UserModel(
+  final UserModel _userModel = UserModel(
       id: 0, name: '', email: '', birthDate: '', city: '', country: '');
   UserModel get userModel => _userModel;
   // SigUP Fct
@@ -32,25 +32,26 @@ class SignupProvider with ChangeNotifier {
           }));
       var responseData = json.decode(response.body);
       if (responseData['errors'] != null) {
-        print('emmail : ${responseData['errors']['email']}');
-        if (responseData['errors']['email'] != null) {
-          throw HttpException(responseData['errors']['email']);
+        print('emmail : ${responseData['errors']['email'][0]}');
+        if (responseData['errors']['email'][0] != null) {
+          print('responseData throwException');
+          throw HttpExceptionClass(responseData['errors']['email'][0]);
         }
       }
-      if (response.statusCode != 200) {
-        print('object');
-        throw const HttpException('Error');
-      }
-      var userProfile = responseData['profil'];
-      // User Info
-      _userModel = UserModel(
-        id: userProfile['id'],
-        name: userProfile['firstName'],
-        email: userProfile['email'],
-        birthDate: userProfile['birthdate'],
-        city: userProfile['city'],
-        country: userProfile['country'],
-      );
+      // if (response.statusCode != 200) {
+      //   print('object');
+      //   throw const HttpException('Error');
+      // }
+      // var userProfile = responseData['profil'];
+      // // User Info
+      // _userModel = UserModel(
+      //   id: userProfile['id'],
+      //   name: userProfile['firstName'],
+      //   email: userProfile['email'],
+      //   birthDate: userProfile['birthdate'],
+      //   city: userProfile['city'],
+      //   country: userProfile['country'],
+      // );
       // Store User Data Locally
       // prefs.setInt('userID', userProfile['id']);
       // prefs.setString('name', userProfile['firstName']);
@@ -61,7 +62,7 @@ class SignupProvider with ChangeNotifier {
       print(responseData);
       notifyListeners();
     } catch (err) {
-      print('err');
+      print('err in signup provider');
       print(err);
       rethrow;
     }

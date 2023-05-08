@@ -9,4 +9,13 @@ void showSnackBar({required BuildContext context, required String content}) {
       ),
     ),
   );
+
+  // ThemeData themeData(BuildContext context) {
+  //   return ThemeData(
+  //     textTheme: TextTheme(
+  //       headlineMedium:
+  //           Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: 15),
+  //     ),
+  //   );
+  // }
 }

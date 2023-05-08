@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/common/widgets/padding.dart';
 import 'package:lft_new_project/provider/auth/seconnecter_sinscrire_provider.dart';
-import 'package:lft_new_project/widgets/auth/login_credential_widget.dart';
+import 'package:lft_new_project/widgets/auth/signup/login_credential_widget.dart';
 import 'package:lft_new_project/widgets/auth/seconnecter_sinscrire_widget.dart';
 import 'package:lft_new_project/widgets/auth/signup/sinscrire_widget.dart';
 import 'package:provider/provider.dart';

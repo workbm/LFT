@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/screens/auth/login.dart';
+import 'package:lft_new_project/screens/home/home_page.dart';
 import 'package:lft_new_project/screens/intro/screen_1.dart';
 import 'package:lft_new_project/screens/intro/screen_2.dart';
 import 'package:lft_new_project/screens/intro/screen_3.dart';
@@ -26,6 +27,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case Login.routeName:
       return MaterialPageRoute(
         builder: (context) => const Login(),
+      );
+    case HomePage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const HomePage(),
       );
     default:
       return MaterialPageRoute(

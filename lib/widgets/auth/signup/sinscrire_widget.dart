@@ -229,6 +229,9 @@ class _SinscrireCredentialWidgetState extends State<SinscrireCredentialWidget> {
                 if (value == null || value.isEmpty) {
                   return 'Ce champ est obligatoire';
                 }
+                if (!value.contains('@')) {
+                  return 'Saisir un format valide';
+                }
                 return null;
               },
             ),
@@ -345,13 +348,13 @@ class _SinscrireCredentialWidgetState extends State<SinscrireCredentialWidget> {
           _passController.text,
           _villeController.text,
           _countryController.text);
-    } on HttpException {
-      // print(;)
-      var error = 'Une erreur se produit';
+    } on HttpExceptionClass catch (error) {
+      print('HttpException Sinscrire');
+      var exceptionError = 'Une erreur se produit';
       if (error.toString().contains('The email has already been taken.')) {
-        error = 'The email has already been taken';
+        exceptionError = 'The email has already been taken';
       }
-      showSnackBar(context: context, content: error);
+      showSnackBar(context: context, content: exceptionError);
     } catch (err) {
       showSnackBar(context: context, content: 'Une erreur se produit');
     }

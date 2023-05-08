@@ -40,6 +40,8 @@ dependencies:
   http: ^0.13.6
   intl: ^0.18.1
   shared_preferences: ^2.1.0
+  auto_size_text: ^3.0.0
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,7 @@ flutter:
   assets:
     - assets/img/background-image-login.png
     - assets/img/google-icon.png
+    - assets/img/menu.png
     - assets/img/object1.png
     - assets/img/Scroll.png
     - assets/img/Scroll-1.png
