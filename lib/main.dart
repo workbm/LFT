@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/provider/auth/login_provider.dart';
 import 'package:lft_new_project/provider/auth/seconnecter_sinscrire_provider.dart';
 import 'package:lft_new_project/provider/auth/sign_up_provider.dart';
+import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
 import 'package:lft_new_project/router.dart';
 import 'package:lft_new_project/screens/home/home_page.dart';
@@ -11,6 +13,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => TopActivityProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => TopRestaurantProvider()),
         ChangeNotifierProvider(create: (_) => SeconnecterSinscrireProvider()),
@@ -33,20 +36,30 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
-        headlineMedium:
-            Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: 15),
+        headlineMedium: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
       ),
     );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'LFT',
-      theme: theme,
-      onGenerateRoute: (settings) => generateRoute(settings),
-      home: const HomePage(),
-      builder: (context, child) => GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
-        child: child,
+    print('how many time the main run');
+    return ScreenUtilInit(
+      designSize: const Size(360, 752),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'LFT',
+        theme: theme,
+        onGenerateRoute: (settings) => generateRoute(settings),
+        home: child,
+        builder: (context, child) => GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+          child: child,
+        ),
       ),
+      child: const HomePage(),
     );
   }
 }

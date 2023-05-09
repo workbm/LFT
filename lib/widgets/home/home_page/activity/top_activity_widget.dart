@@ -1,14 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:lft_new_project/widgets/home/home_page/restaurant/restaurant_snippet.dart';
+import 'package:lft_new_project/widgets/home/home_page/activity/activity_widget.dart';
 
 import '../../../../common/utils/colors.dart';
 import '../../../../common/widgets/gap.dart';
 import '../../../../common/widgets/horizontal_gap.dart';
 import '../../../../common/widgets/padding.dart';
 
-class TopRestaurantWidget extends StatelessWidget {
-  const TopRestaurantWidget({super.key});
+class TopActivityWidget extends StatelessWidget {
+  const TopActivityWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +27,13 @@ class TopRestaurantWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Top Restaurant',
+                    'Top Activités',
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   const Gap(height: 7),
                   SizedBox(
                     width: size.width * 0.6,
-                    child: const Text('Gastronomique Passionné à Paris'),
+                    child: const Text('Les Plus Appréciées'),
                   ),
                 ],
               ),
@@ -59,7 +59,7 @@ class TopRestaurantWidget extends StatelessWidget {
           ),
         ),
         const Gap(height: 15),
-        const RestaurantSnippet(),
+        const ActivityWidget(),
       ],
     );
   }

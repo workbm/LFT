@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CommonColors {
-  static const white = Colors.white;
   static const black = Colors.black;
   static const lightBlue = Colors.lightBlue;
   static const pink = Color(0xffEE80AC);
@@ -10,5 +9,8 @@ class CommonColors {
   static const grey = Color(0xffD9D9D9);
   static const lightGrey = Color(0xffF4F4F4);
   //
+  static const backgroundColor = Color(0xffF6F6F6);
+  static const lightTeal = Color(0xffA0D7C9);
   static const red = Color(0xffF24F4F);
+  static const white = Color(0xffFFFFFF);
 }
