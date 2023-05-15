@@ -15,7 +15,7 @@ class TopActivityWidget extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return Column(
-      // mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.min,
       children: [
         PaddingWidget(
           horizontal: size.width * 0.04,

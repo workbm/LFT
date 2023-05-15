@@ -1,21 +1,30 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:lft_new_project/common/utils/api.dart';
-import 'package:http/http.dart' as http;
-import 'package:lft_new_project/models/image_model.dart';
-import 'package:lft_new_project/models/restaurant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class TopRestaurantProvider with ChangeNotifier {
+import '../../common/utils/api.dart';
+import '../../models/image_model.dart';
+import '../../models/restaurant.dart';
+
+class MainCategoryProvider with ChangeNotifier {
+  bool _loading = false;
+  bool get laoding => _loading;
+  // Restaurants
   List<Restaurant> _restaurants = [];
   List<Restaurant> get restaurants => _restaurants;
-  Future<void> getRestaurants() async {
+  //
+  Future<void> getInfoFct() async {
+    _loading = true;
+    _restaurants = [];
+    print('loading');
+    print(_loading);
+    //token
     try {
-      // Token
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
-      print('token: $token');
+
       // Declarations
       final response = await http.get(
         Uri.parse(Api.url + Api.restaurant),
@@ -49,8 +58,9 @@ class TopRestaurantProvider with ChangeNotifier {
         );
       }
       _restaurants = extractedRestaurant;
-      print('responseData');
-      print(responseData);
+
+      _loading = false;
+
       notifyListeners();
     } catch (err) {
       print('err');

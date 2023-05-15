@@ -13,10 +13,7 @@ class PaddingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontal,
-        vertical: vertical,
-      ),
+      padding: EdgeInsets.fromLTRB(horizontal, vertical, horizontal, 0),
       child: child,
     );
   }

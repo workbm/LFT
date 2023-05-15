@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lft_new_project/common/utils/colors.dart';
-import 'package:lft_new_project/common/widgets/gap.dart';
-import 'package:lft_new_project/widgets/home/home_page/menu_widget.dart';
-import 'package:lft_new_project/widgets/home/home_page/restaurant/top_restaurant_widget.dart';
+import 'package:lft_new_project/provider/main_category_provider/main_category_provider.dart';
+import 'package:lft_new_project/widgets/horizontal_snippet_widget.dart';
+import 'package:lft_new_project/widgets/menu_categories/head_menu_category_widget.dart';
+import 'package:provider/provider.dart';
 
+import '../../common/utils/colors.dart';
+import '../../common/widgets/gap.dart';
 import '../../widgets/drawer_widget.dart';
-import '../../widgets/home/home_page/activity/top_activity_widget.dart';
+import '../../widgets/home/home_page/menu_widget.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-  static const routeName = '/home-page';
+class MainCategoryScreen extends StatelessWidget {
+  const MainCategoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
+    var listenData = context.watch<MainCategoryProvider>();
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: 54.h,
@@ -87,18 +87,19 @@ class HomePage extends StatelessWidget {
       backgroundColor: CommonColors.backgroundColor,
       drawer: const DrawerWidget(),
       body: SafeArea(
-        child: SizedBox(
-          height: size.height,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              MenuWidget(),
-              Gap(height: 20),
-              TopRestaurantWidget(),
-              Gap(height: 20),
-              TopActivityWidget(),
-            ],
-          ),
+        child: Column(
+          // mainAxisSize: MainAxisSize.min,
+          children: [
+            const MenuWidget(),
+            const Gap(height: 15),
+            const HeadMenuCategoryWidget(choice: 1),
+            const Gap(height: 20),
+            listenData.laoding
+                ? const Center(child: CircularProgressIndicator())
+                : const Expanded(
+                    child: HorizontalSnippetWidget(),
+                  )
+          ],
         ),
       ),
     );

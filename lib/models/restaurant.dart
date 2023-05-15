@@ -5,6 +5,7 @@ class Restaurant {
   String name;
   String description;
   List<ImageModel> images;
+  bool discount;
   String remise;
   int categoryId;
   double longitude;
@@ -27,6 +28,7 @@ class Restaurant {
     required this.name,
     required this.description,
     required this.images,
+    required this.discount,
     this.remise = '',
     this.categoryId = 0,
     this.longitude = 0,

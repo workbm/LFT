@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lft_new_project/common/utils/sizes.dart';
 
 import '../../../common/widgets/padding.dart';
 
@@ -7,12 +8,11 @@ class MenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return PaddingWidget(
-      horizontal: size.width * 0.04,
-      vertical: 10,
+      horizontal: CommonSizes.paddingWith,
+      vertical: CommonSizes.paddingWith,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: () {
@@ -20,6 +20,17 @@ class MenuWidget extends StatelessWidget {
             },
             child: Image.asset('assets/img/menu.png'),
           ),
+          // Container(
+          //   height: 27.h,
+          //   width: 27.w,
+          //   decoration: const BoxDecoration(
+          //       color: CommonColors.red, shape: BoxShape.circle),
+          //   child: Icon(
+          //     Icons.notifications_none_outlined,
+          //     size: 22.w,
+          //     color: CommonColors.white,
+          //   ),
+          // )
         ],
       ),
     );

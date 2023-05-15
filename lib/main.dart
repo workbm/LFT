@@ -6,18 +6,21 @@ import 'package:lft_new_project/provider/auth/sign_up_provider.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
 import 'package:lft_new_project/router.dart';
-import 'package:lft_new_project/screens/home/home_page.dart';
+import 'package:lft_new_project/screens/menu_categories/main_category_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'provider/main_category_provider/main_category_provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => TopActivityProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
-        ChangeNotifierProvider(create: (_) => TopRestaurantProvider()),
+        ChangeNotifierProvider(create: (_) => MainCategoryProvider()),
         ChangeNotifierProvider(create: (_) => SeconnecterSinscrireProvider()),
         ChangeNotifierProvider(create: (_) => SignupProvider()),
+        ChangeNotifierProvider(create: (_) => TopActivityProvider()),
+        ChangeNotifierProvider(create: (_) => TopRestaurantProvider()),
       ],
       child: const MyApp(),
     ),
@@ -41,7 +44,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
+        titleSmall: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              fontSize: 12,
+              color: Colors.black,
+            ),
       ),
+      // canvasColor: Colors.transparent,
     );
     print('how many time the main run');
     return ScreenUtilInit(
@@ -59,7 +67,7 @@ class MyApp extends StatelessWidget {
           child: child,
         ),
       ),
-      child: const HomePage(),
+      child: const MainCategoryScreen(),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
@@ -29,6 +30,10 @@ class ActivitySnippet extends StatelessWidget {
           ],
           borderRadius: const BorderRadius.all(Radius.circular(15))),
       padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 7.w),
+      margin: EdgeInsets.only(
+          bottom: 5,
+          right: CommonSizes.paddingWith,
+          left: CommonSizes.paddingWith),
       child: Row(
         children: [
           SizedBox(
