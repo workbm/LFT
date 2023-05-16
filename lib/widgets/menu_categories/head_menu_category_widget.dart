@@ -20,11 +20,17 @@ class HeadMenuCategoryWidget extends StatefulWidget {
 class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
   var _isInit = true;
   var _tapped = false;
+  var _filterTapped = false;
 
   @override
   void didChangeDependencies() {
     if (_isInit) {
-      context.watch<MainCategoryProvider>().getInfoFct();
+      Future.delayed(Duration.zero).then((value) {
+        context.read<MainCategoryProvider>().loadingFct(true);
+        context.read<MainCategoryProvider>().getInfoFct().then((_) {
+          context.read<MainCategoryProvider>().loadingFct(false);
+        });
+      });
     }
     _isInit = false;
     super.didChangeDependencies();
@@ -42,6 +48,13 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
     'Activités culturelles',
     'Activités nautiques',
   ];
+  static const _filter = [
+    'Titre',
+    'Date croissant',
+    'Date décroissant',
+    'Plus aimé',
+    'Plus commenté'
+  ];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -53,7 +66,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
             children: [
               Image.asset(
                   widget.choice == 1
-                      ? ConstantsClass.familleGourmandeImage
+                      ? ConstantsClass.laFamilleGourmandeImage
                       : ConstantsClass.laFamilleSamuseImage,
                   height: 20.h,
                   width: 20.w),
@@ -63,32 +76,39 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
                 width: 230.w,
                 child: AutoSizeText(
                     widget.choice == 1
-                        ? ConstantsClass.familleGourmandeName
+                        ? ConstantsClass.laFamilleGourmandeName
                         : ConstantsClass.laFamilleSamuseName,
                     style: Theme.of(context).textTheme.headlineLarge),
               ),
               const Spacer(),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 50.w,
-                    color: Colors.amber,
-                    child: const AutoSizeText(
-                      'Trier par',
-                      maxLines: 1,
-                      style: TextStyle(
-                        color: CommonColors.red,
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _filterTapped = !_filterTapped;
+                  });
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 50.w,
+                      color: Colors.amber,
+                      child: const AutoSizeText(
+                        'Trier par',
+                        maxLines: 1,
+                        style: TextStyle(
+                          color: CommonColors.red,
+                        ),
                       ),
                     ),
-                  ),
-                  const HorizontalGap(width: 5),
-                  Icon(
-                    Icons.expand_more,
-                    size: 15.w,
-                    color: CommonColors.red,
-                  )
-                ],
+                    const HorizontalGap(width: 2),
+                    Icon(
+                      Icons.expand_more,
+                      size: 15.w,
+                      color: CommonColors.red,
+                    )
+                  ],
+                ),
               )
             ],
           ),
@@ -134,31 +154,74 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
                         ],
                       ),
                     ),
-                    const Gap(height: 3),
-                    if (_tapped)
-                      ..._restaurants.map(
-                        (e) => GestureDetector(
-                          onTap: () {},
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                e,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .copyWith(color: CommonColors.textGrey),
-                              ),
-                              const Gap(height: 3),
-                            ],
-                          ),
-                        ),
-                      ),
                   ],
                 ),
               ),
             ],
           ),
+          const Gap(height: 10),
+          if (_tapped)
+            Wrap(
+              spacing: 5.w,
+              runSpacing: 5.h,
+              children: _restaurants
+                  .map(
+                    (e) => GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.w, vertical: 2.h),
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                        ),
+                        child: Text(
+                          e,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: CommonColors.textGrey),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          (_filterTapped && _tapped)
+              ? Column(
+                  children: const [Gap(height: 5), Divider(), Gap(height: 5)],
+                )
+              : const SizedBox(),
+          !_filterTapped
+              ? const SizedBox()
+              : Wrap(
+                  spacing: 5.w,
+                  runSpacing: 5.h,
+                  children: _filter
+                      .map((filter) => GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10.w, vertical: 2.h),
+                              decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                              ),
+                              child: Text(
+                                filter,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(color: CommonColors.textGrey),
+                              ),
+                            ),
+                          ))
+                      .toList(),
+                )
         ],
       ),
     );

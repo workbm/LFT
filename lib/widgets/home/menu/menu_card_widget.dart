@@ -1,8 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:lft_new_project/common/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/utils/colors.dart';
 import '../../../common/widgets/horizontal_gap.dart';
+import '../../../provider/main_category_provider/main_category_provider.dart';
 
 class MenuCardWidget extends StatefulWidget {
   const MenuCardWidget({super.key, required this.choice});
@@ -114,21 +117,27 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
                                                   as List<String>
                                               : _choice7['elements']
                                                   as List<String>)
-                      .map((text) => ListTile(
-                            dense: true,
-                            title: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.toc,
-                                  color: Colors.transparent,
-                                ),
-                                const HorizontalGap(width: 5),
-                                AutoSizeText(
-                                  text,
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
-                              ],
+                      .map((text) => GestureDetector(
+                            onTap: () {
+                              context.read<MainCategoryProvider>().getInfoFct();
+                            },
+                            child: ListTile(
+                              dense: true,
+                              title: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.toc,
+                                    color: Colors.transparent,
+                                  ),
+                                  const HorizontalGap(width: 5),
+                                  AutoSizeText(
+                                    text,
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  ),
+                                ],
+                              ),
                             ),
                           ))
                       .toList(),
@@ -144,7 +153,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
     'elements': ['Accueil']
   };
   static const _choice2 = {
-    'title': 'La famille gourmande',
+    'title': ConstantsClass.laFamilleGourmandeName,
     'elements': [
       'Petit déjeuner',
       'Déjeuner / Dîner',
@@ -153,7 +162,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
     ],
   };
   static const _choice3 = {
-    'title': 'La famille S’amuse',
+    'title': ConstantsClass.laFamilleSamuseName,
     'elements': [
       'Plages',
       'Parcs',
@@ -162,7 +171,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
     ],
   };
   static const _choice4 = {
-    'title': 'La famille découvre/visite',
+    'title': ConstantsClass.laFamilleVisiteName,
     'elements': [
       'Lieux emblématiques',
       'Spots Instagramables',
@@ -170,7 +179,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
     ],
   };
   static const _choice5 = {
-    'title': 'La famille shoppe',
+    'title': ConstantsClass.laFamilleShopName,
     'elements': [
       'Boutiques artisanales/souvenirs',
       'Centres commerciaux',
@@ -178,7 +187,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
     ],
   };
   static const _choice6 = {
-    'title': 'Agenda',
+    'title': ConstantsClass.agendaName,
     'elements': [
       'Petit déjeuner',
       'Petit déjeuner / Dîner',
@@ -187,7 +196,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
     ],
   };
   static const _choice7 = {
-    'title': 'Info pratique',
+    'title': ConstantsClass.infosPratiquesName,
     'elements': [
       'Parkings gratuits',
       'Toilettes publiques',

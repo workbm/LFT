@@ -67,9 +67,20 @@ class HorizontalSnippetWidget extends StatelessWidget {
                       color: Colors.yellow,
                       width: 203.w,
                       height: 30.h,
-                      child: AutoSizeText(
-                        listenData.restaurants[index].name,
-                        style: Theme.of(context).textTheme.headlineMedium,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            color: Colors.blueAccent,
+                            width: 170.w,
+                            height: 30.h,
+                            child: AutoSizeText(
+                              listenData.restaurants[index].name,
+                              style: Theme.of(context).textTheme.headlineMedium,
+                            ),
+                          ),
+                          Icon(Icons.favorite_border, size: 20.w),
+                        ],
                       ),
                     ),
                     const Gap(height: 5),

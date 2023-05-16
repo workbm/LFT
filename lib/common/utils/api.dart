@@ -4,4 +4,5 @@ class Api {
   static const login = 'login';
   static const restaurant = 'restaurants';
   static const activities = 'activities';
+  static const getAllTypesOfCatygories = 'getAllTypesOfCategories';
 }

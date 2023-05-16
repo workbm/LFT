@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,12 +15,13 @@ class MainCategoryProvider with ChangeNotifier {
   // Restaurants
   List<Restaurant> _restaurants = [];
   List<Restaurant> get restaurants => _restaurants;
+  // Sub Category Name
+  final String _subCategoryName = '';
+  String get subCategoryName => _subCategoryName;
   //
   Future<void> getInfoFct() async {
-    _loading = true;
     _restaurants = [];
-    print('loading');
-    print(_loading);
+
     //token
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -59,13 +61,21 @@ class MainCategoryProvider with ChangeNotifier {
       }
       _restaurants = extractedRestaurant;
 
-      _loading = false;
-
       notifyListeners();
     } catch (err) {
       print('err');
       print(err);
       rethrow;
     }
+  }
+
+  void getCategorySubCategoryName(String subCategoryName) {
+    if (subCategoryName.contains(ConstantsClass.laFamilleGourmandeName)) {}
+    notifyListeners();
+  }
+
+  void loadingFct(bool isLoading) {
+    _loading = isLoading;
+    notifyListeners();
   }
 }
