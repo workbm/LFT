@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/common/utils/colors.dart';
-import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
@@ -57,6 +56,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
   ];
   @override
   Widget build(BuildContext context) {
+    var listenData = context.watch<MainCategoryProvider>();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: CommonSizes.paddingWith),
       child: Column(
@@ -64,20 +64,20 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
         children: [
           Row(
             children: [
-              Image.asset(
-                  widget.choice == 1
-                      ? ConstantsClass.laFamilleGourmandeImage
-                      : ConstantsClass.laFamilleSamuseImage,
+              Image.asset(listenData.mainCategoryImage,
+                  // widget.choice == 1
+                  //     ? ConstantsClass.laFamilleGourmandeImage
+                  //     : ConstantsClass.laFamilleSamuseImage,
                   height: 20.h,
                   width: 20.w),
               const HorizontalGap(width: 5),
               Container(
                 color: Colors.teal,
                 width: 230.w,
-                child: AutoSizeText(
-                    widget.choice == 1
-                        ? ConstantsClass.laFamilleGourmandeName
-                        : ConstantsClass.laFamilleSamuseName,
+                child: AutoSizeText(listenData.mainCategoryTitle,
+                    // widget.choice == 1
+                    //     ? ConstantsClass.laFamilleGourmandeName
+                    //     : ConstantsClass.laFamilleSamuseName,
                     style: Theme.of(context).textTheme.headlineLarge),
               ),
               const Spacer(),
@@ -134,7 +134,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
                           Container(
                             color: Colors.amber,
                             child: Text(
-                              'data',
+                              listenData.categoryTitle,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!

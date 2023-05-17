@@ -12,7 +12,7 @@ import '../../widgets/home/home_page/menu_widget.dart';
 
 class MainCategoryScreen extends StatelessWidget {
   const MainCategoryScreen({super.key});
-  // final String categoryName;
+  static const routeName = '/main-category-screen';
   @override
   Widget build(BuildContext context) {
     var listenData = context.watch<MainCategoryProvider>();

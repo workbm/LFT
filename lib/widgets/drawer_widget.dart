@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lft_new_project/common/utils/constants.dart';
 
 import '../common/utils/colors.dart';
 import '../common/utils/sizes.dart';
@@ -86,13 +87,16 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 ),
                 const Gap(height: 15),
-                const MenuCardWidget(choice: 1),
-                const MenuCardWidget(choice: 2),
-                const MenuCardWidget(choice: 3),
-                const MenuCardWidget(choice: 4),
-                const MenuCardWidget(choice: 5),
-                const MenuCardWidget(choice: 6),
-                const MenuCardWidget(choice: 7),
+                const MenuCardWidget(choice: ConstantsClass.accueilName),
+                const MenuCardWidget(
+                    choice: ConstantsClass.laFamilleGourmandeName),
+                const MenuCardWidget(
+                    choice: ConstantsClass.laFamilleSamuseName),
+                const MenuCardWidget(
+                    choice: ConstantsClass.laFamilleVisiteName),
+                const MenuCardWidget(choice: ConstantsClass.laFamilleShopName),
+                const MenuCardWidget(choice: ConstantsClass.agendaName),
+                const MenuCardWidget(choice: ConstantsClass.infosPratiquesName),
                 const Gap(height: 11),
                 Card(
                   shape: RoundedRectangleBorder(

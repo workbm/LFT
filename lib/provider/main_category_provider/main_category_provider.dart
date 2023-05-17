@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,6 +11,20 @@ import '../../models/restaurant.dart';
 class MainCategoryProvider with ChangeNotifier {
   bool _loading = false;
   bool get laoding => _loading;
+  // APi
+  String _categoryUrl = '';
+  String get categoryUrl => _categoryUrl;
+  int _categoryID = 0;
+  int get categoryID => _categoryID;
+  //
+  // String _title = '';
+  // String get title => _title;
+  String _mainCategoryImage = '';
+  String get mainCategoryImage => _mainCategoryImage;
+  String _mainCategoryTitle = '';
+  String get mainCategoryTitle => _mainCategoryTitle;
+  String _categoryTitle = '';
+  String get categoryTitle => _categoryTitle;
   // Restaurants
   List<Restaurant> _restaurants = [];
   List<Restaurant> get restaurants => _restaurants;
@@ -28,8 +41,9 @@ class MainCategoryProvider with ChangeNotifier {
       final token = prefs.getString('token');
 
       // Declarations
+      final url = Uri.parse('${Api.url}$_categoryUrl$_categoryID');
       final response = await http.get(
-        Uri.parse(Api.url + Api.restaurant),
+        url,
         headers: {
           'Content-Type': 'application/json',
           'X-Requested-With': "XMLHttpRequest",
@@ -37,15 +51,19 @@ class MainCategoryProvider with ChangeNotifier {
         },
       );
       var responseData = json.decode(response.body);
+      print('responseData');
+      print(responseData);
       List<Restaurant> extractedRestaurant = [];
       for (var element in responseData) {
         // Images
         List<ImageModel> extractedImages = [];
-        for (var ele in element['images']) {
-          if (element['images'].isNotEmpty) {
-            extractedImages.add(
-              ImageModel(id: ele['id'], url: ele['url'] ?? ''),
-            );
+        if (element['images'] != null) {
+          for (var ele in element['images']) {
+            if (element['images'].isNotEmpty) {
+              extractedImages.add(
+                ImageModel(id: ele['id'], url: ele['url'] ?? ''),
+              );
+            }
           }
         }
         // Restaurants
@@ -69,8 +87,13 @@ class MainCategoryProvider with ChangeNotifier {
     }
   }
 
-  void getCategorySubCategoryName(String subCategoryName) {
-    if (subCategoryName.contains(ConstantsClass.laFamilleGourmandeName)) {}
+  void getCategoryInfo(String mainCategoryTitle, String mainCategoryImage,
+      String categorytitle, String categoryURL, int categoryId) {
+    _mainCategoryTitle = mainCategoryTitle;
+    _categoryTitle = categorytitle;
+    _mainCategoryImage = mainCategoryImage;
+    _categoryUrl = categoryURL;
+    _categoryID = categoryId;
     notifyListeners();
   }
 

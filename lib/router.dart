@@ -5,9 +5,14 @@ import 'package:lft_new_project/screens/intro/screen_1.dart';
 import 'package:lft_new_project/screens/intro/screen_2.dart';
 import 'package:lft_new_project/screens/intro/screen_3.dart';
 import 'package:lft_new_project/screens/intro/screen_4.dart';
+import 'package:lft_new_project/screens/menu_categories/main_category_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case MainCategoryScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const MainCategoryScreen(),
+      );
     case Screen1.routeName:
       return MaterialPageRoute(
         builder: (context) => const Screen1(),

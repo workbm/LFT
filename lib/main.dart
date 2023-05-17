@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/provider/auth/login_provider.dart';
 import 'package:lft_new_project/provider/auth/seconnecter_sinscrire_provider.dart';
 import 'package:lft_new_project/provider/auth/sign_up_provider.dart';
+import 'package:lft_new_project/provider/home/categories_provider.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
 import 'package:lft_new_project/router.dart';
-import 'package:lft_new_project/screens/menu_categories/main_category_screen.dart';
+import 'package:lft_new_project/screens/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/main_category_provider/main_category_provider.dart';
@@ -15,6 +16,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => CategoriesProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => MainCategoryProvider()),
         ChangeNotifierProvider(create: (_) => SeconnecterSinscrireProvider()),
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
           child: child,
         ),
       ),
-      child: const MainCategoryScreen(),
+      child: const HomePage(),
     );
   }
 }
