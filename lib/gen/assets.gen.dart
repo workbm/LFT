@@ -64,11 +64,17 @@ class $AssetsImgGen {
   AssetGenImage get infoPratique =>
       const AssetGenImage('assets/img/info-pratique.png');
 
+  /// File path: assets/img/location.png
+  AssetGenImage get location => const AssetGenImage('assets/img/location.png');
+
   /// File path: assets/img/menu.png
   AssetGenImage get menu => const AssetGenImage('assets/img/menu.png');
 
   /// File path: assets/img/object1.png
   AssetGenImage get object1 => const AssetGenImage('assets/img/object1.png');
+
+  /// File path: assets/img/time.png
+  AssetGenImage get time => const AssetGenImage('assets/img/time.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
@@ -87,8 +93,10 @@ class $AssetsImgGen {
         heart,
         home,
         infoPratique,
+        location,
         menu,
-        object1
+        object1,
+        time
       ];
 }
 

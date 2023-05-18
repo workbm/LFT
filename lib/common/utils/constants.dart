@@ -39,9 +39,9 @@ class ConstantsClass {
       'image': Assets.img.familleVisite.path,
       'api': Api.visiteByCategory,
       'catygories': [
-        {'id': 1, 'name': 'category 1'},
-        {'id': 2, 'name': 'category 2'},
-        {'id': 3, 'name': 'category 3'}
+        CategoryModel(id: 1, name: 'category 1', url: Api.visiteByCategory),
+        CategoryModel(id: 2, name: 'category 2', url: Api.visiteByCategory),
+        CategoryModel(id: 3, name: 'category 3', url: Api.visiteByCategory),
       ],
     },
     ConstantsClass.laFamilleSamuseName: {
@@ -49,12 +49,14 @@ class ConstantsClass {
       'image': Assets.img.familleSamuse.path,
       'api': Api.activitiesByCategory,
       'catygories': [
-        {'id': 1, 'name': 'EN FAMILLE'},
-        {'id': 2, 'name': 'EN COUPLE'},
-        {'id': 5, 'name': 'INTÉRIEUR'},
-        {'id': 6, 'name': 'EXTÉRIEUR'},
-        {'id': 7, 'name': 'ACTIVITÉS PAYANTES'},
-        {'id': 9, 'name': 'ACTIVITÉS GRATUITES'}
+        CategoryModel(id: 1, name: 'EN FAMILLE', url: Api.activitiesByCategory),
+        CategoryModel(id: 2, name: 'EN COUPLE', url: Api.activitiesByCategory),
+        CategoryModel(id: 5, name: 'INTÉRIEUR', url: Api.activitiesByCategory),
+        CategoryModel(id: 6, name: 'INTÉRIEUR', url: Api.activitiesByCategory),
+        CategoryModel(
+            id: 7, name: 'ACTIVITÉS PAYANTES', url: Api.activitiesByCategory),
+        CategoryModel(
+            id: 9, name: 'ACTIVITÉS GRATUITES', url: Api.activitiesByCategory),
       ],
     },
     ConstantsClass.laFamilleGourmandeName: {

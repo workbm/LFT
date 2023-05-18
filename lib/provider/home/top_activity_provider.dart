@@ -41,17 +41,17 @@ class TopActivityProvider with ChangeNotifier {
         // ActivityModels
         extractedActivityModel.add(
           ActivityModel(
-            id: element['id'],
-            name: element['name'] ?? '',
-            description: element['description'] ?? '',
-            images: extractedImages,
-            categoryID: element['categoryId'] ?? 0,
-            favouriteCount: element['favourite_count'] ?? 0,
-            likedCount: element['liked_count'] ?? 0,
-            latitude: (element['latitude'] ?? 0).toDouble(),
-            longitude: (element['longitude'] ?? 0).toDouble(),
-            haveDiscount: element['haveDiscount'] ?? 0,
-          ),
+              id: element['id'],
+              name: element['name'] ?? '',
+              description: element['description'] ?? '',
+              images: extractedImages,
+              categoryID: element['categoryId'] ?? 0,
+              favouriteCount: element['favourite_count'] ?? 0,
+              likedCount: element['liked_count'] ?? 0,
+              latitude: (element['latitude'] ?? 0).toDouble(),
+              longitude: (element['longitude'] ?? 0).toDouble(),
+              haveDiscount: element['haveDiscount'] ?? 0,
+              avgRating: element['avgAvis'] ?? 0),
         );
       }
       _activities = extractedActivityModel;

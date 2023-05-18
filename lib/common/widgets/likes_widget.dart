@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/colors.dart';
 
-class LikesWidget extends StatelessWidget {
-  const LikesWidget({
+class LikesCommentWidget extends StatelessWidget {
+  const LikesCommentWidget({
     super.key,
     required this.containerWidth,
     required this.containerHeight,
@@ -44,6 +44,7 @@ class LikesWidget extends StatelessWidget {
                     )
                   : Image.asset(
                       'assets/img/comment.png',
+                      fit: BoxFit.contain,
                       height: imageSize.h,
                       width: imageSize.w,
                     ),

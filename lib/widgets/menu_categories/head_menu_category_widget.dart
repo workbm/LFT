@@ -35,18 +35,6 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
     super.didChangeDependencies();
   }
 
-  static const _restaurants = [
-    'Petit déjeuner',
-    'Déjeuner / Dîner',
-    'Salon de thé/café',
-    'Brunch',
-  ];
-  static const _activities = [
-    'Plages',
-    'Parcs',
-    'Activités culturelles',
-    'Activités nautiques',
-  ];
   static const _filter = [
     'Titre',
     'Date croissant',
@@ -57,6 +45,8 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
   @override
   Widget build(BuildContext context) {
     var listenData = context.watch<MainCategoryProvider>();
+    var data = context.read<MainCategoryProvider>();
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: CommonSizes.paddingWith),
       child: Column(
@@ -65,19 +55,12 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
           Row(
             children: [
               Image.asset(listenData.mainCategoryImage,
-                  // widget.choice == 1
-                  //     ? ConstantsClass.laFamilleGourmandeImage
-                  //     : ConstantsClass.laFamilleSamuseImage,
-                  height: 20.h,
-                  width: 20.w),
+                  height: 20.h, width: 20.w),
               const HorizontalGap(width: 5),
               Container(
                 color: Colors.teal,
                 width: 230.w,
                 child: AutoSizeText(listenData.mainCategoryTitle,
-                    // widget.choice == 1
-                    //     ? ConstantsClass.laFamilleGourmandeName
-                    //     : ConstantsClass.laFamilleSamuseName,
                     style: Theme.of(context).textTheme.headlineLarge),
               ),
               const Spacer(),
@@ -164,10 +147,15 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
             Wrap(
               spacing: 5.w,
               runSpacing: 5.h,
-              children: _restaurants
+              children: listenData.categoryList
                   .map(
                     (e) => GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        data.getCategoryMustInfo(e.url, e.id);
+                        setState(() {
+                          _isInit = true;
+                        });
+                      },
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.w, vertical: 2.h),
@@ -178,7 +166,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
                           ),
                         ),
                         child: Text(
-                          e,
+                          e.name,
                           style: Theme.of(context)
                               .textTheme
                               .titleSmall!

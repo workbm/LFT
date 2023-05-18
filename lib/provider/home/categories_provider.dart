@@ -37,29 +37,29 @@ class CategoriesProvider with ChangeNotifier {
       // LA FAMILLE GOURMANDE
       extractedCategories = [];
       for (var element in responseData['restaurantCategories']) {
-        extractedCategories
-            .add(CategoryModel(id: element['id'], name: element['name']));
+        extractedCategories.add(
+            CategoryModel(id: element['id'], name: element['name'], url: ''));
       }
       _familleGourmandeCategories = extractedCategories;
       // LA FAMILLE S'AMUSE
       extractedCategories = [];
       for (var element in responseData['activityCategories']) {
-        extractedCategories
-            .add(CategoryModel(id: element['id'], name: element['name']));
+        extractedCategories.add(
+            CategoryModel(id: element['id'], name: element['name'], url: ''));
       }
       _familleSamuseCategories = extractedCategories;
       // LA FAMILLE SHOPPE
       extractedCategories = [];
       for (var element in responseData['shoppingCategories']) {
-        extractedCategories
-            .add(CategoryModel(id: element['id'], name: element['name']));
+        extractedCategories.add(
+            CategoryModel(id: element['id'], name: element['name'], url: ''));
       }
       _familleShopCategories = extractedCategories;
       // LA FAMILLE DÉCOUVRE/VISITE
       extractedCategories = [];
       for (var element in responseData['publicPlaceCategpries']) {
-        extractedCategories
-            .add(CategoryModel(id: element['id'], name: element['name']));
+        extractedCategories.add(
+            CategoryModel(id: element['id'], name: element['name'], url: ''));
       }
       _familleVisiteCategories = extractedCategories;
 

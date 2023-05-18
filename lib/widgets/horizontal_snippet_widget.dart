@@ -99,7 +99,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
                       color: Colors.orange,
                       child: Row(
                         children: [
-                          const LikesWidget(
+                          const LikesCommentWidget(
                             containerHeight: 20,
                             containerWidth: 45,
                             horizontalPadding: 2,
@@ -108,7 +108,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
                             textContainer: 18,
                           ),
                           SizedBox(width: 3.w),
-                          const LikesWidget(
+                          const LikesCommentWidget(
                             containerHeight: 20,
                             containerWidth: 45,
                             horizontalPadding: 2,

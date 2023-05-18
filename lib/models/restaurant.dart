@@ -15,7 +15,7 @@ class Restaurant {
   int likedCount;
   int favouriteCount;
   int like;
-  num avgAvis;
+  num avgRating;
   // Category? category;
 
   // List<Avis>? avis;
@@ -37,7 +37,7 @@ class Restaurant {
     this.likedCount = 0,
     this.favouriteCount = 0,
     this.like = 0,
-    this.avgAvis = 0,
+    this.avgRating = 0,
     // this.category,
     // this.avis,
     // this.likes,

@@ -44,6 +44,7 @@ dependencies:
   cached_network_image: ^3.2.3
   font_awesome_flutter: ^10.4.0
   percent_indicator: ^4.2.3
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -84,12 +85,14 @@ flutter:
     - assets/img/heart.png
     - assets/img/home.png
     - assets/img/info-pratique.png
+    - assets/img/location.png
     - assets/img/menu.png
     - assets/img/object1.png
     - assets/img/Scroll.png
     - assets/img/Scroll-1.png
     - assets/img/Scroll-2.png
     - assets/img/Scroll-3.png
+    - assets/img/time.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

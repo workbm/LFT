@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lft_new_project/models/category_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,8 +18,8 @@ class MainCategoryProvider with ChangeNotifier {
   int _categoryID = 0;
   int get categoryID => _categoryID;
   //
-  // String _title = '';
-  // String get title => _title;
+  List<CategoryModel> _categoryList = [];
+  List<CategoryModel> get categoryList => _categoryList;
   String _mainCategoryImage = '';
   String get mainCategoryImage => _mainCategoryImage;
   String _mainCategoryTitle = '';
@@ -74,6 +75,7 @@ class MainCategoryProvider with ChangeNotifier {
             description: element['description'] ?? '',
             images: extractedImages,
             discount: (element['haveDiscount'] ?? 0) == 1 ? true : false,
+            avgRating: element['avgAvis'] ?? 0,
           ),
         );
       }
@@ -87,11 +89,26 @@ class MainCategoryProvider with ChangeNotifier {
     }
   }
 
-  void getCategoryInfo(String mainCategoryTitle, String mainCategoryImage,
-      String categorytitle, String categoryURL, int categoryId) {
+  void getCategoryInfo(
+      String mainCategoryTitle,
+      String mainCategoryImage,
+      String categorytitle,
+      String categoryURL,
+      int categoryId,
+      List<CategoryModel> categoryList) {
     _mainCategoryTitle = mainCategoryTitle;
     _categoryTitle = categorytitle;
     _mainCategoryImage = mainCategoryImage;
+    _categoryUrl = categoryURL;
+    _categoryID = categoryId;
+    _categoryList = categoryList;
+    notifyListeners();
+  }
+
+  void getCategoryMustInfo(
+    String categoryURL,
+    int categoryId,
+  ) {
     _categoryUrl = categoryURL;
     _categoryID = categoryId;
     notifyListeners();

@@ -45,6 +45,7 @@ class TopRestaurantProvider with ChangeNotifier {
             description: element['description'] ?? '',
             images: extractedImages,
             discount: (element['haveDiscount'] ?? 0) == 1 ? true : false,
+            avgRating: element['avgAvis'] ?? 0,
           ),
         );
       }

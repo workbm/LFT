@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/constants.dart';
+import 'package:lft_new_project/models/category_model.dart';
 import 'package:lft_new_project/screens/menu_categories/main_category_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -134,8 +135,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
                   !widget.choice.contains(ConstantsClass.accueilName) &&
                   !widget.choice.contains(ConstantsClass.agendaName))
               ? Column(
-                  children: (categoriesMap['catygories']
-                          as List<Map<String, Object>>)
+                  children: (categoriesMap['catygories'] as List<CategoryModel>)
                       // (widget.choice == 1
                       //         ? _choice1['elements'] as List<String>
                       //         : widget.choice == 2
@@ -158,9 +158,11 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
                                   .getCategoryInfo(
                                       categoriesMap['title'] as String,
                                       categoriesMap['image'] as String,
-                                      e['name'] as String,
-                                      categoriesMap['api'] as String,
-                                      e['id'] as int);
+                                      e.name,
+                                      e.url,
+                                      e.id,
+                                      categoriesMap['catygories']
+                                          as List<CategoryModel>);
                               Navigator.pushNamed(
                                   context, MainCategoryScreen.routeName);
                             },
@@ -175,7 +177,7 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
                                   ),
                                   const HorizontalGap(width: 5),
                                   AutoSizeText(
-                                    e['name'] as String,
+                                    e.name,
                                     style:
                                         Theme.of(context).textTheme.bodySmall,
                                   ),
