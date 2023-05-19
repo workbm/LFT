@@ -33,7 +33,10 @@ class TopRestaurantProvider with ChangeNotifier {
         for (var ele in element['images']) {
           if (element['images'].isNotEmpty) {
             extractedImages.add(
-              ImageModel(id: ele['id'], url: ele['url'] ?? ''),
+              ImageModel(
+                id: ele['id'],
+                url: Api.url + ele['url'],
+              ),
             );
           }
         }

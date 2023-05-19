@@ -7,17 +7,27 @@ import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/gen/assets.gen.dart';
+import 'package:lft_new_project/models/comment_model.dart';
+import 'package:lft_new_project/models/review_model.dart';
 import 'package:lft_new_project/models/tag.dart';
+import 'package:lft_new_project/models/user_model.dart';
 import 'package:lft_new_project/widgets/detail_widget/review_widget.dart';
+import 'package:lft_new_project/widgets/global_view_widget.dart';
 
 import '../../common/utils/colors.dart';
 import '../../common/widgets/gap.dart';
-import '../../widgets/drawer_widget.dart';
 import '../../widgets/home/home_page/menu_widget.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
+  static const routeName = '/detail-screen';
 
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  var _noteAvisTapped = false;
   @override
   Widget build(BuildContext context) {
     const imageList = [
@@ -33,6 +43,72 @@ class DetailScreen extends StatelessWidget {
       Tag(id: 3, name: 'Tag 3'),
       Tag(id: 4, name: 'Tag 4'),
       Tag(id: 5, name: 'Tag 5'),
+    ];
+    final comments = [
+      CommentModel(
+        id: 1,
+        userID: 1,
+        serviceID: 1,
+        rating: 3.5,
+        time: DateTime.now(),
+        review: ReviewModel(
+            id: 1, userID: 1, serviceID: 1, rating: 3.5, time: DateTime.now()),
+        user: UserModel(
+            id: 1,
+            name: 'Jamilla challa',
+            email: 'email@example.com',
+            birthDate: '1/1/2000',
+            city: 'Paris',
+            country: 'France'),
+      ),
+      CommentModel(
+        id: 1,
+        userID: 1,
+        serviceID: 1,
+        rating: 4.5,
+        time: DateTime(2022, 9),
+        review: ReviewModel(
+            id: 1, userID: 1, serviceID: 1, rating: 4.5, time: DateTime.now()),
+        user: UserModel(
+            id: 1,
+            name: 'Kabil clkav',
+            email: 'email@example.com',
+            birthDate: '1/1/2000',
+            city: 'Paris',
+            country: 'France'),
+      ),
+      CommentModel(
+        id: 1,
+        userID: 1,
+        serviceID: 1,
+        rating: 3.5,
+        time: DateTime.now(),
+        review: ReviewModel(
+            id: 1, userID: 1, serviceID: 1, rating: 3.5, time: DateTime.now()),
+        user: UserModel(
+            id: 1,
+            name: 'Jamilla challa',
+            email: 'email@example.com',
+            birthDate: '1/1/2000',
+            city: 'Paris',
+            country: 'France'),
+      ),
+      CommentModel(
+        id: 1,
+        userID: 1,
+        serviceID: 1,
+        rating: 3.5,
+        time: DateTime.now(),
+        review: ReviewModel(
+            id: 1, userID: 1, serviceID: 1, rating: 3.5, time: DateTime.now()),
+        user: UserModel(
+            id: 1,
+            name: 'Jamilla challa',
+            email: 'email@example.com',
+            birthDate: '1/1/2000',
+            city: 'Paris',
+            country: 'France'),
+      )
     ];
     return Scaffold(
       bottomNavigationBar: SizedBox(
@@ -103,13 +179,15 @@ class DetailScreen extends StatelessWidget {
         ),
       ),
       backgroundColor: CommonColors.backgroundColor,
-      drawer: const DrawerWidget(),
+      // drawer: const DrawerWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             // mainAxisSize: MainAxisSize.min,
             children: [
-              const MenuWidget(),
+              const MenuWidget(
+                isMenu: false,
+              ),
               const Gap(height: 15),
               Container(
                 width: double.infinity,
@@ -281,67 +359,84 @@ class DetailScreen extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            const Icon(
-                              Icons.expand_more,
-                              color: CommonColors.pink,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _noteAvisTapped = !_noteAvisTapped;
+                                });
+                              },
+                              child: const Icon(
+                                Icons.expand_more,
+                                color: CommonColors.pink,
+                              ),
                             ),
                           ],
                         ),
                         const Gap(height: 7),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                    color: Colors.deepOrange,
-                                    height: 40.h,
-                                    width: 80.h,
-                                    child: const FittedBox(
-                                      fit: BoxFit.fill,
-                                      child: Center(
-                                        child: Text(
-                                          '4.0',
-                                          // maxFontSize: 25,
+                        !_noteAvisTapped
+                            ? const SizedBox()
+                            : Row(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                          color: Colors.deepOrange,
+                                          height: 40.h,
+                                          width: 80.h,
+                                          child: const FittedBox(
+                                            fit: BoxFit.fill,
+                                            child: Center(
+                                              child: Text(
+                                                '4.0',
+                                                // maxFontSize: 25,
+                                              ),
+                                            ),
+                                          )),
+                                      const Gap(height: 7),
+                                      RatingBar.builder(
+                                        initialRating: 3,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemSize: 16.7.w,
+                                        // itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                                        itemBuilder: (context, _) => const Icon(
+                                          Icons.star,
+                                          color: CommonColors.yellow,
                                         ),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
                                       ),
-                                    )),
-                                const Gap(height: 7),
-                                RatingBar.builder(
-                                  initialRating: 3,
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemSize: 16.7.w,
-                                  // itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                                  itemBuilder: (context, _) => const Icon(
-                                    Icons.star,
-                                    color: CommonColors.yellow,
+                                    ],
                                   ),
-                                  onRatingUpdate: (rating) {
-                                    print(rating);
-                                  },
-                                ),
-                              ],
-                            ),
-                            const HorizontalGap(width: 20),
-                            Container(
-                              width: 200.w,
-                              color: Colors.indigoAccent,
-                              child: const AutoSizeText(
-                                'les notes et les avis sont validés. Ils sont fournis par des personnes réel',
-                                // softWrap: true,
+                                  const HorizontalGap(width: 20),
+                                  Container(
+                                    width: 200.w,
+                                    color: Colors.indigoAccent,
+                                    child: const AutoSizeText(
+                                      'les notes et les avis sont validés. Ils sont fournis par des personnes réel',
+                                      // softWrap: true,
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
-                          ],
-                        ),
                       ],
                     ),
                   ],
                 ),
               ),
               const Gap(height: 15),
-              const ReviewWidget(),
+              if (_noteAvisTapped)
+                ...comments.map(
+                  (e) => ReviewWidget(comment: e),
+                ),
+              if (!_noteAvisTapped)
+                const GlobalViewWidget(
+                  title: 'Restaurants',
+                  subTitle: 'Où le bonheur de chaque instant fond en bouche',
+                ),
             ],
           ),
         ),

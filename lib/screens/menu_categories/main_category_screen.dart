@@ -90,7 +90,9 @@ class MainCategoryScreen extends StatelessWidget {
         child: Column(
           // mainAxisSize: MainAxisSize.min,
           children: [
-            const MenuWidget(),
+            const MenuWidget(
+              isMenu: true,
+            ),
             const Gap(height: 15),
             const HeadMenuCategoryWidget(choice: 1),
             const Gap(height: 15),

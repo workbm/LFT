@@ -1,24 +1,35 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:lft_new_project/common/utils/colors.dart';
 import 'package:lft_new_project/common/utils/sizes.dart';
+import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
+import 'package:lft_new_project/models/comment_model.dart';
 
 class ReviewWidget extends StatelessWidget {
-  const ReviewWidget({super.key});
-
+  const ReviewWidget({super.key, required this.comment});
+  final CommentModel comment;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: CommonSizes.paddingWith),
+      margin: EdgeInsets.only(
+        left: CommonSizes.paddingWith,
+        right: CommonSizes.paddingWith,
+        bottom: 5.h,
+      ),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       decoration: const BoxDecoration(
           color: CommonColors.white,
           borderRadius: BorderRadius.all(Radius.circular(15))),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 decoration: const BoxDecoration(
@@ -52,13 +63,39 @@ class ReviewWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              const HorizontalGap(width: 7),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Jamilla challa'),
+                  const Gap(height: 5),
+                  Row(
+                    children: [
+                      RatingBar.builder(
+                        ignoreGestures: true,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        initialRating: comment.review.rating,
+                        itemCount: 5,
+                        itemSize: 16.7.w,
+                        // itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: CommonColors.yellow,
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        },
+                      ),
+                      const HorizontalGap(width: 5),
+                      Text(DateFormat('d / M / yy').format(comment.review.time))
+                    ],
+                  ),
+                ],
               )
             ],
           ),
-          const HorizontalGap(width: 7),
-          Column(
-            children: const [Text('Jamilla challa')],
-          )
         ],
       ),
     );

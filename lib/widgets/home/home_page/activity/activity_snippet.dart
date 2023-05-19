@@ -44,12 +44,12 @@ class ActivitySnippet extends StatelessWidget {
               itemBuilder: (context, i) => Container(
                 height: 100.h,
                 width: 100.w,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                      'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-                      // listenData.activities[index].images[i].url,
+                      // 'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
+                      listenData.activities[index].images[i].url,
                     ),
                     fit: BoxFit.cover,
                   ),

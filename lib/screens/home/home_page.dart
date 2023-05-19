@@ -97,7 +97,9 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: const [
-              MenuWidget(),
+              MenuWidget(
+                isMenu: true,
+              ),
               Gap(height: 20),
               TopRestaurantWidget(),
               Gap(height: 20),

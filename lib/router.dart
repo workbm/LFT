@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/screens/auth/login.dart';
+import 'package:lft_new_project/screens/detail_screen/detail_screen.dart';
 import 'package:lft_new_project/screens/home/home_page.dart';
 import 'package:lft_new_project/screens/intro/screen_1.dart';
 import 'package:lft_new_project/screens/intro/screen_2.dart';
@@ -9,6 +10,10 @@ import 'package:lft_new_project/screens/menu_categories/main_category_screen.dar
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case DetailScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const DetailScreen(),
+      );
     case MainCategoryScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const MainCategoryScreen(),
