@@ -18,7 +18,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var listenData = context.watch<MainCategoryProvider>();
     return ListView.builder(
-        itemCount: listenData.restaurants.length,
+        itemCount: listenData.services.length,
         itemBuilder: (context, index) {
           return Container(
             decoration: BoxDecoration(
@@ -42,7 +42,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
                   height: 100.h,
                   width: 100.w,
                   child: PageView.builder(
-                    itemCount: listenData.restaurants[index].images.length,
+                    itemCount: listenData.services[index].images.length,
                     itemBuilder: (context, i) => Container(
                       height: 100.h,
                       width: 100.w,
@@ -75,7 +75,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
                             width: 170.w,
                             height: 30.h,
                             child: AutoSizeText(
-                              listenData.restaurants[index].name,
+                              listenData.services[index].name,
                               style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
@@ -89,7 +89,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
                       width: 203.w,
                       height: 30.h,
                       child: AutoSizeText(
-                        listenData.restaurants[index].description,
+                        listenData.services[index].description,
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
@@ -117,7 +117,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
                             textContainer: 18,
                           ),
                           const Spacer(),
-                          !listenData.restaurants[index].discount
+                          !listenData.services[index].haveDiscount
                               ? const SizedBox()
                               : Container(
                                   height: 20.h,
@@ -129,12 +129,13 @@ class HorizontalSnippetWidget extends StatelessWidget {
                                   ),
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 1.w, vertical: 2.h),
-                                  child: const Center(
+                                  child: Center(
                                     child: AutoSizeText(
-                                      'Promo 20%',
+                                      listenData.services[index].remise
+                                          .toString(),
                                       minFontSize: 8,
                                       maxLines: 1,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: CommonColors.white,
                                       ),
                                     ),

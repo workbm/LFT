@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lft_new_project/models/restaurant.dart';
 import 'package:lft_new_project/screens/auth/login.dart';
 import 'package:lft_new_project/screens/detail_screen/detail_screen.dart';
 import 'package:lft_new_project/screens/home/home_page.dart';
@@ -11,8 +12,9 @@ import 'package:lft_new_project/screens/menu_categories/main_category_screen.dar
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case DetailScreen.routeName:
+      final service = settings.arguments as Restaurant;
       return MaterialPageRoute(
-        builder: (context) => const DetailScreen(),
+        builder: (context) => DetailScreen(service: service),
       );
     case MainCategoryScreen.routeName:
       return MaterialPageRoute(

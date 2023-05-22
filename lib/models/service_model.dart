@@ -1,10 +1,9 @@
-import 'package:lft_new_project/models/image_model.dart';
-import 'package:lft_new_project/models/review_model.dart';
-import 'package:lft_new_project/models/tag.dart';
-
 import 'comment_model.dart';
+import 'image_model.dart';
+import 'review_model.dart';
+import 'tag.dart';
 
-class Restaurant {
+class ServiceModel {
   int id, categoryID, favouriteCount, likedCount;
   String name, description;
   bool haveDiscount, liked;
@@ -13,7 +12,7 @@ class Restaurant {
   List<CommentModel> commentList;
   List<ReviewModel> reviewList;
   List<TagModel> tagList;
-  Restaurant({
+  ServiceModel({
     required this.id,
     required this.name,
     required this.description,

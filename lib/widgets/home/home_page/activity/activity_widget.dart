@@ -31,7 +31,7 @@ class _ActivityWidgetState extends State<ActivityWidget> {
     var listenData = context.watch<TopActivityProvider>();
     return Container(
       // decoration: const BoxDecoration(color: Colors.orange),
-      height: 200.h,
+      height: 230.h,
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 5),
       child: _isLoading

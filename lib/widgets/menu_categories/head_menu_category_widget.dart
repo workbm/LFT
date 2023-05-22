@@ -53,6 +53,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(listenData.mainCategoryImage,
                   height: 20.h, width: 20.w),

@@ -8,6 +8,7 @@ import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/gen/assets.gen.dart';
 import 'package:lft_new_project/models/comment_model.dart';
+import 'package:lft_new_project/models/restaurant.dart';
 import 'package:lft_new_project/models/review_model.dart';
 import 'package:lft_new_project/models/tag.dart';
 import 'package:lft_new_project/models/user_model.dart';
@@ -19,9 +20,9 @@ import '../../common/widgets/gap.dart';
 import '../../widgets/home/home_page/menu_widget.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  const DetailScreen({super.key, required this.service});
   static const routeName = '/detail-screen';
-
+  final Restaurant service;
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
@@ -38,11 +39,11 @@ class _DetailScreenState extends State<DetailScreen> {
       'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y'
     ];
     final tags = [
-      Tag(id: 1, name: 'Tag 1'),
-      Tag(id: 2, name: 'Tag 2'),
-      Tag(id: 3, name: 'Tag 3'),
-      Tag(id: 4, name: 'Tag 4'),
-      Tag(id: 5, name: 'Tag 5'),
+      TagModel(id: 1, name: 'Tag 1'),
+      TagModel(id: 2, name: 'Tag 2'),
+      TagModel(id: 3, name: 'Tag 3'),
+      TagModel(id: 4, name: 'Tag 4'),
+      TagModel(id: 5, name: 'Tag 5'),
     ];
     final comments = [
       CommentModel(
@@ -225,7 +226,8 @@ class _DetailScreenState extends State<DetailScreen> {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(15)),
                             image: DecorationImage(
-                              image: CachedNetworkImageProvider(imageList[0]),
+                              image: CachedNetworkImageProvider(
+                                  widget.service.images[0].url),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -235,7 +237,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           height: 235.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: imageList
+                            children: widget.service.images
                                 .take(3)
                                 .map(
                                   (e) => Container(
@@ -245,7 +247,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(15)),
                                       image: DecorationImage(
-                                        image: CachedNetworkImageProvider(e),
+                                        image:
+                                            CachedNetworkImageProvider(e.url),
                                         fit: BoxFit.cover,
                                       ),
                                     ),

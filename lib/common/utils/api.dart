@@ -1,6 +1,6 @@
 class Api {
   static const url = 'https://demo.lafamilletesteuse.fr/api/';
-  static const urlWithoutUrl = 'https://demo.lafamilletesteuse.fr';
+  static const urlWithoutApi = 'https://demo.lafamilletesteuse.fr';
   static const signUP = 'signup';
   static const login = 'login';
   static const getAllTypesOfCatygories = 'getAllTypesOfCategories';

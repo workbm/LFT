@@ -98,6 +98,7 @@ class ConstantsClass {
       'api': '',
       'catygories': [],
     },
+    // INFOS PRATIQUES
     ConstantsClass.infosPratiquesName: {
       'title': ConstantsClass.infosPratiquesName,
       'image': Assets.img.infoPratique.path,

@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:lft_new_project/models/category_model.dart';
+import 'package:lft_new_project/screens/home/home_page.dart';
 import 'package:lft_new_project/screens/menu_categories/main_category_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -123,12 +124,18 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
                   ? Icons.expand_more
                   : Icons.chevron_right,
               color: CommonColors.darkGrey,
-              // size: .w,
             ),
             onTap: () {
-              setState(() {
-                _expand = !_expand;
-              });
+              if (widget.choice.contains(ConstantsClass.accueilName)) {
+                Navigator.pushNamed(context, HomePage.routeName);
+              } else {
+                setState(() {
+                  _expand = !_expand;
+                });
+              }
+              // if (widget.choice.contains(ConstantsClass.agendaName)) {
+              //   Navigator.pushNamed(context, agenda.routeName);
+              // }
             },
           ),
           (_expand &&

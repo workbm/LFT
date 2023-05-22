@@ -6,6 +6,7 @@ import 'package:lft_new_project/common/utils/colors.dart';
 import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
+import 'package:lft_new_project/screens/detail_screen/detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class RestaurantSnippet extends StatefulWidget {
@@ -47,141 +48,162 @@ class _RestaurantSnippetState extends State<RestaurantSnippet> {
                 child: ListView.builder(
                   itemCount: listenData.restaurants.length,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Center(
-                    child: Container(
-                      height: 230,
-                      decoration: BoxDecoration(
-                          color: CommonColors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color:
-                                  CommonColors.backgroundColor.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 5,
-                            ),
-                          ],
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15))),
-                      margin: EdgeInsets.only(right: 7.w),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 7.h, horizontal: 7.w),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 140.w,
-                            height: 125.h,
-                            child: PageView.builder(
-                              itemCount:
-                                  listenData.restaurants[index].images.length,
-                              itemBuilder: (context, index) => Container(
-                                width: 140.w,
-                                height: 125.h,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(15),
-                                  ),
-                                  image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                      'https://image.cnbcfm.com/api/v1/image/107236863-1683379954526-27uIf9mw.jpg?v=1683559680&w=630&h=354&ffmt=webp&vtcrop=y',
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        DetailScreen.routeName,
+                        arguments: listenData.restaurants[index],
+                      );
+                    },
+                    child: Center(
+                      child: Container(
+                        height: 230,
+                        decoration: BoxDecoration(
+                            color: CommonColors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: CommonColors.backgroundColor
+                                    .withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                              ),
+                            ],
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15))),
+                        margin: EdgeInsets.only(right: 7.w),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 7.h, horizontal: 7.w),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 140.w,
+                              height: 125.h,
+                              child: PageView.builder(
+                                itemCount:
+                                    listenData.restaurants[index].images.length,
+                                itemBuilder: (context, i) => Container(
+                                  width: 140.w,
+                                  height: 125.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(15),
+                                      topRight: Radius.circular(15),
                                     ),
-                                    fit: BoxFit.cover,
+                                    image: DecorationImage(
+                                      image: CachedNetworkImageProvider(
+                                        listenData
+                                            .restaurants[index].images[i].url,
+                                        // 'https://image.cnbcfm.com/api/v1/image/107236863-1683379954526-27uIf9mw.jpg?v=1683559680&w=630&h=354&ffmt=webp&vtcrop=y',
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          const Gap(height: 10),
-                          SizedBox(
-                            width: 140.w,
-                            height: 40.h,
-                            child: AutoSizeText(
-                              listenData.restaurants[index].name,
-                              style: Theme.of(context).textTheme.headlineMedium,
+                            const Gap(height: 10),
+                            SizedBox(
+                              width: 140.w,
+                              // height: 40.h,
+                              child: const AutoSizeText(
+                                'Restaurant',
+                                // style: Theme.of(context).textTheme.headlineMedium,
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 140.w,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: 25.h,
-                                  width: 60.w,
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  decoration: const BoxDecoration(
-                                      color: CommonColors.backgroundColor,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(15),
-                                      )),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        GestureDetector(
-                                          child: const Icon(
-                                            Icons.favorite_border,
-                                            color: CommonColors.red,
-                                            size: 20,
+                            SizedBox(
+                              width: 140.w,
+                              height: 30.h,
+                              child: AutoSizeText(
+                                listenData.restaurants[index].name,
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
+                              ),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 140.w,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    height: 25.h,
+                                    width: 60.w,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    decoration: const BoxDecoration(
+                                        color: CommonColors.backgroundColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(15),
+                                        )),
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          GestureDetector(
+                                            child: const Icon(
+                                              Icons.favorite_border,
+                                              color: CommonColors.red,
+                                              size: 20,
+                                            ),
                                           ),
-                                        ),
-                                        const Spacer(),
-                                        const SizedBox(
-                                          width: 25,
-                                          child: AutoSizeText(
-                                            '5.2k',
-                                            maxLines: 1,
+                                          const Spacer(),
+                                          const SizedBox(
+                                            width: 25,
+                                            child: AutoSizeText(
+                                              '5.2k',
+                                              maxLines: 1,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(width: 5.w, child: const Text('')),
-                                Container(
-                                  width: 60.w,
-                                  height: 25.h,
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  decoration: const BoxDecoration(
-                                      color: CommonColors.backgroundColor,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(15),
-                                      )),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        GestureDetector(
-                                          child: Image.asset(
-                                            'assets/img/comment.png',
-                                            height: 20.h,
-                                            width: 20.w,
+                                  SizedBox(width: 5.w, child: const Text('')),
+                                  Container(
+                                    width: 60.w,
+                                    height: 25.h,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    decoration: const BoxDecoration(
+                                        color: CommonColors.backgroundColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(15),
+                                        )),
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          GestureDetector(
+                                            child: Image.asset(
+                                              'assets/img/comment.png',
+                                              height: 20.h,
+                                              width: 20.w,
+                                            ),
                                           ),
-                                        ),
-                                        const Spacer(),
-                                        const SizedBox(
-                                          width: 25,
-                                          child: AutoSizeText(
-                                            '5.2k',
-                                            maxLines: 1,
+                                          const Spacer(),
+                                          const SizedBox(
+                                            width: 25,
+                                            child: AutoSizeText(
+                                              '5.2k',
+                                              maxLines: 1,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

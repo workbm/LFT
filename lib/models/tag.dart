@@ -1,5 +1,5 @@
-class Tag {
+class TagModel {
   int id;
   String name;
-  Tag({required this.id, required this.name});
+  TagModel({required this.id, required this.name});
 }

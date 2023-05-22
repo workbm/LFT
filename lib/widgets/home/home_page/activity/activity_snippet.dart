@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../common/utils/colors.dart';
 import '../../../../common/widgets/gap.dart';
+import '../../../../screens/detail_screen/detail_screen.dart';
 
 class ActivitySnippet extends StatelessWidget {
   const ActivitySnippet({super.key, required this.index});
@@ -34,123 +35,137 @@ class ActivitySnippet extends StatelessWidget {
           bottom: 5,
           right: CommonSizes.paddingWith,
           left: CommonSizes.paddingWith),
-      child: Row(
-        children: [
-          SizedBox(
-            height: 100.h,
-            width: 100.w,
-            child: PageView.builder(
-              itemCount: listenData.activities[index].images.length,
-              itemBuilder: (context, i) => Container(
-                height: 100.h,
-                width: 100.w,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      // 'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-                      listenData.activities[index].images[i].url,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            DetailScreen.routeName,
+            arguments: listenData.activities[index],
+          );
+        },
+        child: Row(
+          children: [
+            SizedBox(
+              height: 100.h,
+              width: 100.w,
+              child: PageView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: listenData.activities[index].images.length,
+                itemBuilder: (context, i) => Container(
+                  height: 100.h,
+                  width: 100.w,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(
+                        // 'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
+                        listenData.activities[index].images[i].url,
+                      ),
+                      fit: BoxFit.cover,
                     ),
-                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
-          ),
-          const HorizontalGap(width: 7),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                color: Colors.yellow,
-                width: 203.w,
-                height: 30.h,
-                child: AutoSizeText(
-                  listenData.activities[index].name,
-                  style: Theme.of(context).textTheme.headlineMedium,
+            const HorizontalGap(width: 7),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  color: Colors.yellow,
+                  width: 203.w,
+                  height: 30.h,
+                  child: AutoSizeText(
+                    listenData.activities[index].name,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
                 ),
-              ),
-              const Gap(height: 5),
-              Container(
-                color: Colors.teal,
-                width: 203.w,
-                height: 30.h,
-                child: AutoSizeText(
-                  listenData.activities[index].description,
-                  style: Theme.of(context).textTheme.bodySmall,
+                const Gap(height: 5),
+                Container(
+                  color: Colors.teal,
+                  width: 203.w,
+                  height: 30.h,
+                  child: AutoSizeText(
+                    listenData.activities[index].description,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                 ),
-              ),
-              const Gap(height: 5),
-              Container(
-                width: 203.w,
-                color: Colors.orange,
-                child: Row(
-                  children: [
-                    const LikesCommentWidget(
-                      containerHeight: 20,
-                      containerWidth: 45,
-                      horizontalPadding: 2,
-                      imageSize: 17,
-                      isIcon: false,
-                      textContainer: 18,
-                    ),
-                    SizedBox(width: 3.w),
-                    const LikesCommentWidget(
-                      containerHeight: 20,
-                      containerWidth: 45,
-                      horizontalPadding: 2,
-                      imageSize: 17,
-                      isIcon: true,
-                      textContainer: 18,
-                    ),
-                    const Spacer(),
-                    Container(
-                      height: 20.h,
-                      width: 50.w,
-                      decoration: const BoxDecoration(
-                        color: CommonColors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                const Gap(height: 5),
+                Container(
+                  width: 203.w,
+                  color: Colors.orange,
+                  child: Row(
+                    children: [
+                      const LikesCommentWidget(
+                        containerHeight: 20,
+                        containerWidth: 45,
+                        horizontalPadding: 2,
+                        imageSize: 17,
+                        isIcon: false,
+                        textContainer: 18,
                       ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 1.w, vertical: 2.h),
-                      child: const Center(
-                        child: AutoSizeText(
-                          'Promo 20%',
-                          minFontSize: 8,
-                          maxLines: 1,
-                          style: TextStyle(
-                            color: CommonColors.white,
+                      SizedBox(width: 3.w),
+                      const LikesCommentWidget(
+                        containerHeight: 20,
+                        containerWidth: 45,
+                        horizontalPadding: 2,
+                        imageSize: 17,
+                        isIcon: true,
+                        textContainer: 18,
+                      ),
+                      const Spacer(),
+                      !listenData.activities[index].haveDiscount
+                          ? const SizedBox()
+                          : Container(
+                              height: 20.h,
+                              width: 50.w,
+                              decoration: const BoxDecoration(
+                                color: CommonColors.red,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(3)),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 1.w, vertical: 2.h),
+                              child: Center(
+                                child: AutoSizeText(
+                                  listenData.activities[index].remise
+                                      .toString(),
+                                  minFontSize: 8,
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                    color: CommonColors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                      const HorizontalGap(width: 3),
+                      Container(
+                        height: 20.h,
+                        width: 50.w,
+                        decoration: const BoxDecoration(
+                          color: CommonColors.lightTeal,
+                          borderRadius: BorderRadius.all(Radius.circular(3)),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 1.w, vertical: 2.h),
+                        child: const Center(
+                          child: AutoSizeText(
+                            'Consulter',
+                            minFontSize: 8,
+                            maxLines: 1,
+                            style: TextStyle(
+                              color: CommonColors.white,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const HorizontalGap(width: 3),
-                    Container(
-                      height: 20.h,
-                      width: 50.w,
-                      decoration: const BoxDecoration(
-                        color: CommonColors.lightTeal,
-                        borderRadius: BorderRadius.all(Radius.circular(3)),
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 1.w, vertical: 2.h),
-                      child: const Center(
-                        child: AutoSizeText(
-                          'Consulter',
-                          minFontSize: 8,
-                          maxLines: 1,
-                          style: TextStyle(
-                            color: CommonColors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
