@@ -1,12 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lft_new_project/widgets/home/home_page/activity/activity_widget.dart';
+import 'package:lft_new_project/widgets/global_view/global_view_loading_element_widget.dart';
 
-import '../../../../common/widgets/gap.dart';
-import '../../../../common/widgets/padding.dart';
-import '../common/utils/colors.dart';
-import '../common/widgets/horizontal_gap.dart';
+import '../../../../../common/widgets/gap.dart';
+import '../../../../../common/widgets/padding.dart';
+import '../../common/utils/colors.dart';
+import '../../common/widgets/horizontal_gap.dart';
 
 class GlobalViewWidget extends StatelessWidget {
   const GlobalViewWidget(
@@ -69,7 +69,7 @@ class GlobalViewWidget extends StatelessWidget {
           ),
         ),
         const Gap(height: 15),
-        const ActivityWidget(),
+        const GlobalViewLoadingElementWidget(),,
       ],
     );
   }

@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/api.dart';
-import 'package:lft_new_project/models/activity_model.dart';
 import 'package:lft_new_project/models/comment_model.dart';
 import 'package:lft_new_project/models/review_model.dart';
+import 'package:lft_new_project/models/service_model.dart';
 import 'package:lft_new_project/models/tag.dart';
 import 'package:lft_new_project/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,8 +13,8 @@ import 'package:http/http.dart' as http;
 import '../../models/image_model.dart';
 
 class TopActivityProvider with ChangeNotifier {
-  List<ActivityModel> _activities = [];
-  List<ActivityModel> get activities => _activities;
+  List<ServiceModel> _activities = [];
+  List<ServiceModel> get activities => _activities;
   // Fct
   Future<void> getActivities() async {
     _activities = [];
@@ -32,7 +32,7 @@ class TopActivityProvider with ChangeNotifier {
         },
       );
       var responseData = json.decode(response.body);
-      List<ActivityModel> extractedActivities = [];
+      List<ServiceModel> extractedActivities = [];
       for (var element in responseData) {
         // Images
         List<ImageModel> extractedImages = [];
@@ -105,7 +105,7 @@ class TopActivityProvider with ChangeNotifier {
         }
         // ActivityModels
         extractedActivities.add(
-          ActivityModel(
+          ServiceModel(
             id: element['id'],
             name: element['name'] ?? '',
             description: element['description'] ?? '',

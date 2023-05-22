@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/api.dart';
 import 'package:http/http.dart' as http;
 import 'package:lft_new_project/models/image_model.dart';
-import 'package:lft_new_project/models/restaurant.dart';
+import 'package:lft_new_project/models/service_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/comment_model.dart';
@@ -13,8 +13,8 @@ import '../../models/tag.dart';
 import '../../models/user_model.dart';
 
 class TopRestaurantProvider with ChangeNotifier {
-  List<Restaurant> _restaurants = [];
-  List<Restaurant> get restaurants => _restaurants;
+  List<ServiceModel> _restaurants = [];
+  List<ServiceModel> get restaurants => _restaurants;
   Future<void> getRestaurants() async {
     _restaurants = [];
     try {
@@ -32,7 +32,7 @@ class TopRestaurantProvider with ChangeNotifier {
         },
       );
       var responseData = json.decode(response.body);
-      List<Restaurant> extractedRestaurant = [];
+      List<ServiceModel> extractedRestaurant = [];
       for (var element in responseData) {
         print('here remise');
         print((element['remise'] ?? 0).toString());
@@ -107,7 +107,7 @@ class TopRestaurantProvider with ChangeNotifier {
         }
         // Restaurants
         extractedRestaurant.add(
-          Restaurant(
+          ServiceModel(
             id: element['id'],
             name: element['name'] ?? '',
             description: element['description'] ?? '',

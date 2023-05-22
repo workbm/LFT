@@ -8,12 +8,11 @@ import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/gen/assets.gen.dart';
 import 'package:lft_new_project/models/comment_model.dart';
-import 'package:lft_new_project/models/restaurant.dart';
 import 'package:lft_new_project/models/review_model.dart';
-import 'package:lft_new_project/models/tag.dart';
+import 'package:lft_new_project/models/service_model.dart';
 import 'package:lft_new_project/models/user_model.dart';
 import 'package:lft_new_project/widgets/detail_widget/review_widget.dart';
-import 'package:lft_new_project/widgets/global_view_widget.dart';
+import 'package:lft_new_project/widgets/global_view/global_view_widget.dart';
 
 import '../../common/utils/colors.dart';
 import '../../common/widgets/gap.dart';
@@ -22,7 +21,7 @@ import '../../widgets/home/home_page/menu_widget.dart';
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key, required this.service});
   static const routeName = '/detail-screen';
-  final Restaurant service;
+  final ServiceModel service;
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
@@ -31,20 +30,6 @@ class _DetailScreenState extends State<DetailScreen> {
   var _noteAvisTapped = false;
   @override
   Widget build(BuildContext context) {
-    const imageList = [
-      'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-      'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-      'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-      'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-      'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y'
-    ];
-    final tags = [
-      TagModel(id: 1, name: 'Tag 1'),
-      TagModel(id: 2, name: 'Tag 2'),
-      TagModel(id: 3, name: 'Tag 3'),
-      TagModel(id: 4, name: 'Tag 4'),
-      TagModel(id: 5, name: 'Tag 5'),
-    ];
     final comments = [
       CommentModel(
         id: 1,
@@ -326,7 +311,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       child: Center(
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: tags.length,
+                          itemCount: widget.service.tagList.length,
                           itemBuilder: (context, index) => Container(
                             margin: EdgeInsets.only(right: 7.w),
                             padding: EdgeInsets.symmetric(
@@ -337,7 +322,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   const BorderRadius.all(Radius.circular(15)),
                             ),
                             child: Center(
-                              child: Text(tags[index].name,
+                              child: Text(widget.service.tagList[index].name,
                                   style: const TextStyle(
                                       color: CommonColors.grey)),
                             ),
@@ -432,7 +417,7 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
               const Gap(height: 15),
               if (_noteAvisTapped)
-                ...comments.map(
+                ...widget.service.commentList.map(
                   (e) => ReviewWidget(comment: e),
                 ),
               if (!_noteAvisTapped)

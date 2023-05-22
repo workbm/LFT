@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:lft_new_project/models/category_model.dart';
+import 'package:lft_new_project/models/service_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../common/utils/api.dart';
 import '../../models/comment_model.dart';
 import '../../models/image_model.dart';
-import '../../models/restaurant.dart';
 import '../../models/review_model.dart';
 import '../../models/tag.dart';
 import '../../models/user_model.dart';
@@ -32,8 +32,8 @@ class MainCategoryProvider with ChangeNotifier {
   String _categoryTitle = '';
   String get categoryTitle => _categoryTitle;
   // Restaurants
-  List<Restaurant> _services = [];
-  List<Restaurant> get services => _services;
+  List<ServiceModel> _services = [];
+  List<ServiceModel> get services => _services;
   // Sub Category Name
   final String _subCategoryName = '';
   String get subCategoryName => _subCategoryName;
@@ -58,7 +58,7 @@ class MainCategoryProvider with ChangeNotifier {
       var responseData = json.decode(response.body);
       print('responseData');
       print(responseData);
-      List<Restaurant> extractedRestaurants = [];
+      List<ServiceModel> extractedRestaurants = [];
       for (var element in responseData) {
         // Images
         List<ImageModel> extractedImages = [];
@@ -131,7 +131,7 @@ class MainCategoryProvider with ChangeNotifier {
         }
         // Restaurants
         extractedRestaurants.add(
-          Restaurant(
+          ServiceModel(
             id: element['id'],
             name: element['name'] ?? '',
             description: element['description'] ?? '',

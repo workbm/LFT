@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/provider/auth/login_provider.dart';
 import 'package:lft_new_project/provider/auth/seconnecter_sinscrire_provider.dart';
 import 'package:lft_new_project/provider/auth/sign_up_provider.dart';
+import 'package:lft_new_project/provider/detail_screen_provider/detail_screen_provider.dart';
 import 'package:lft_new_project/provider/home/categories_provider.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
@@ -17,6 +18,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+        ChangeNotifierProvider(create: (_) => DetailScreenProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => MainCategoryProvider()),
         ChangeNotifierProvider(create: (_) => SeconnecterSinscrireProvider()),
