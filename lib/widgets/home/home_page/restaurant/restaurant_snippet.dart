@@ -9,6 +9,10 @@ import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
 import 'package:lft_new_project/screens/detail_screen/detail_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/utils/constants.dart';
+import '../../../../provider/detail_screen_provider/detail_screen_provider.dart';
+import '../../../../provider/main_category_provider/main_category_provider.dart';
+
 class RestaurantSnippet extends StatefulWidget {
   const RestaurantSnippet({super.key});
 
@@ -50,6 +54,12 @@ class _RestaurantSnippetState extends State<RestaurantSnippet> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
+                      // Added To use Voi Plus
+                      context.read<MainCategoryProvider>().goToSpecificCategory(
+                          ConstantsClass.laFamilleGourmandeName);
+                      //
+                      context.read<DetailScreenProvider>().serviceChoice(
+                          context, ConstantsClass.laFamilleGourmandeName);
                       Navigator.pushNamed(
                         context,
                         DetailScreen.routeName,

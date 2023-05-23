@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
+import 'package:lft_new_project/models/service_model.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -13,8 +14,9 @@ import '../../../../common/widgets/gap.dart';
 import '../../../../screens/detail_screen/detail_screen.dart';
 
 class GlobalViewSnippet extends StatelessWidget {
-  const GlobalViewSnippet({super.key, required this.index});
-  final int index;
+  const GlobalViewSnippet({super.key, required this.serviceModel});
+  // final int index;
+  final ServiceModel serviceModel;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,8 @@ class GlobalViewSnippet extends StatelessWidget {
           Navigator.pushNamed(
             context,
             DetailScreen.routeName,
-            arguments: listenData.activities[index],
+            arguments: serviceModel,
+            // listenData.activities[index],
           );
         },
         child: Row(
@@ -50,7 +53,8 @@ class GlobalViewSnippet extends StatelessWidget {
               width: 100.w,
               child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: listenData.activities[index].images.length,
+                itemCount: serviceModel.images.length,
+                // listenData.activities[index].images.length,
                 itemBuilder: (context, i) => Container(
                   height: 100.h,
                   width: 100.w,
@@ -59,7 +63,8 @@ class GlobalViewSnippet extends StatelessWidget {
                     image: DecorationImage(
                       image: CachedNetworkImageProvider(
                         // 'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-                        listenData.activities[index].images[i].url,
+                        // listenData.activities[index].images[i].url,
+                        serviceModel.images[i].url,
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -76,7 +81,8 @@ class GlobalViewSnippet extends StatelessWidget {
                   width: 203.w,
                   height: 30.h,
                   child: AutoSizeText(
-                    listenData.activities[index].name,
+                    serviceModel.name,
+                    // listenData.activities[index].name,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
@@ -86,7 +92,8 @@ class GlobalViewSnippet extends StatelessWidget {
                   width: 203.w,
                   height: 30.h,
                   child: AutoSizeText(
-                    listenData.activities[index].description,
+                    serviceModel.description,
+                    // listenData.activities[index].description,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
@@ -114,7 +121,8 @@ class GlobalViewSnippet extends StatelessWidget {
                         textContainer: 18,
                       ),
                       const Spacer(),
-                      !listenData.activities[index].haveDiscount
+                      !serviceModel.haveDiscount
+                          // !listenData.activities[index].haveDiscount
                           ? const SizedBox()
                           : Container(
                               height: 20.h,
@@ -128,8 +136,8 @@ class GlobalViewSnippet extends StatelessWidget {
                                   horizontal: 1.w, vertical: 2.h),
                               child: Center(
                                 child: AutoSizeText(
-                                  listenData.activities[index].remise
-                                      .toString(),
+                                  // listenData.activities[index].remise
+                                  serviceModel.remise.toString(),
                                   minFontSize: 8,
                                   maxLines: 1,
                                   style: const TextStyle(

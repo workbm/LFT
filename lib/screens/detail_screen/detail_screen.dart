@@ -7,14 +7,12 @@ import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/gen/assets.gen.dart';
-import 'package:lft_new_project/models/comment_model.dart';
-import 'package:lft_new_project/models/review_model.dart';
 import 'package:lft_new_project/models/service_model.dart';
-import 'package:lft_new_project/models/user_model.dart';
 import 'package:lft_new_project/widgets/detail_widget/review_widget.dart';
 import 'package:lft_new_project/widgets/global_view/global_view_widget.dart';
 
 import '../../common/utils/colors.dart';
+import '../../common/widgets/bottom_navigation_bar_widget.dart';
 import '../../common/widgets/gap.dart';
 import '../../widgets/home/home_page/menu_widget.dart';
 
@@ -30,140 +28,8 @@ class _DetailScreenState extends State<DetailScreen> {
   var _noteAvisTapped = false;
   @override
   Widget build(BuildContext context) {
-    final comments = [
-      CommentModel(
-        id: 1,
-        userID: 1,
-        serviceID: 1,
-        rating: 3.5,
-        time: DateTime.now(),
-        review: ReviewModel(
-            id: 1, userID: 1, serviceID: 1, rating: 3.5, time: DateTime.now()),
-        user: UserModel(
-            id: 1,
-            name: 'Jamilla challa',
-            email: 'email@example.com',
-            birthDate: '1/1/2000',
-            city: 'Paris',
-            country: 'France'),
-      ),
-      CommentModel(
-        id: 1,
-        userID: 1,
-        serviceID: 1,
-        rating: 4.5,
-        time: DateTime(2022, 9),
-        review: ReviewModel(
-            id: 1, userID: 1, serviceID: 1, rating: 4.5, time: DateTime.now()),
-        user: UserModel(
-            id: 1,
-            name: 'Kabil clkav',
-            email: 'email@example.com',
-            birthDate: '1/1/2000',
-            city: 'Paris',
-            country: 'France'),
-      ),
-      CommentModel(
-        id: 1,
-        userID: 1,
-        serviceID: 1,
-        rating: 3.5,
-        time: DateTime.now(),
-        review: ReviewModel(
-            id: 1, userID: 1, serviceID: 1, rating: 3.5, time: DateTime.now()),
-        user: UserModel(
-            id: 1,
-            name: 'Jamilla challa',
-            email: 'email@example.com',
-            birthDate: '1/1/2000',
-            city: 'Paris',
-            country: 'France'),
-      ),
-      CommentModel(
-        id: 1,
-        userID: 1,
-        serviceID: 1,
-        rating: 3.5,
-        time: DateTime.now(),
-        review: ReviewModel(
-            id: 1, userID: 1, serviceID: 1, rating: 3.5, time: DateTime.now()),
-        user: UserModel(
-            id: 1,
-            name: 'Jamilla challa',
-            email: 'email@example.com',
-            birthDate: '1/1/2000',
-            city: 'Paris',
-            country: 'France'),
-      )
-    ];
     return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: 54.h,
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15.0),
-                  topRight: Radius.circular(15.0),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-            ),
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15.0),
-                topRight: Radius.circular(15.0),
-              ),
-              child: BottomNavigationBar(
-                selectedFontSize: 0, unselectedFontSize: 0,
-                iconSize: 30.w,
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.home,
-                      color: CommonColors.yellow,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.favorite_border,
-                      color: CommonColors.pink,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.person_outlined,
-                      color: CommonColors.darkGreen,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.bookmark_border,
-                      color: CommonColors.black,
-                    ),
-                    label: '',
-                  ),
-                ],
-                // currentIndex: _selectedIndex,
-                selectedItemColor: Colors.amber[800],
-                // onTap: _onItemTapped,
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       backgroundColor: CommonColors.backgroundColor,
       // drawer: const DrawerWidget(),
       body: SafeArea(
@@ -420,11 +286,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ...widget.service.commentList.map(
                   (e) => ReviewWidget(comment: e),
                 ),
-              if (!_noteAvisTapped)
-                const GlobalViewWidget(
-                  title: 'Restaurants',
-                  subTitle: 'Où le bonheur de chaque instant fond en bouche',
-                ),
+              if (!_noteAvisTapped) const GlobalViewWidget(),
             ],
           ),
         ),

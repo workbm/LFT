@@ -16,7 +16,6 @@ class TopRestaurantProvider with ChangeNotifier {
   List<ServiceModel> _restaurants = [];
   List<ServiceModel> get restaurants => _restaurants;
   Future<void> getRestaurants() async {
-    _restaurants = [];
     try {
       // Token
       final prefs = await SharedPreferences.getInstance();
@@ -128,6 +127,7 @@ class TopRestaurantProvider with ChangeNotifier {
           ),
         );
       }
+      _restaurants = [];
       _restaurants = extractedRestaurant;
       print('responseData');
       print(responseData);

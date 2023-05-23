@@ -2,10 +2,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
+import 'package:lft_new_project/provider/detail_screen_provider/detail_screen_provider.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
+import 'package:lft_new_project/provider/main_category_provider/main_category_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/utils/colors.dart';
@@ -37,6 +40,14 @@ class ActivitySnippet extends StatelessWidget {
           left: CommonSizes.paddingWith),
       child: GestureDetector(
         onTap: () {
+          // Added To use Voi Plus
+          context
+              .read<MainCategoryProvider>()
+              .goToSpecificCategory(ConstantsClass.laFamilleSamuseName);
+          //
+          context
+              .read<DetailScreenProvider>()
+              .serviceChoice(context, ConstantsClass.laFamilleSamuseName);
           Navigator.pushNamed(
             context,
             DetailScreen.routeName,

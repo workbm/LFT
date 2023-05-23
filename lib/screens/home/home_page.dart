@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/common/utils/colors.dart';
+import 'package:lft_new_project/common/widgets/bottom_navigation_bar_widget.dart';
 import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/widgets/home/home_page/menu_widget.dart';
 import 'package:lft_new_project/widgets/home/home_page/restaurant/top_restaurant_widget.dart';
@@ -22,73 +23,7 @@ class _HomePageState extends State<HomePage> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: 54.h,
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15.0),
-                  topRight: Radius.circular(15.0),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-            ),
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15.0),
-                topRight: Radius.circular(15.0),
-              ),
-              child: BottomNavigationBar(
-                selectedFontSize: 0, unselectedFontSize: 0,
-                iconSize: 30.w,
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.home,
-                      color: CommonColors.yellow,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.favorite_border,
-                      color: CommonColors.pink,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.person_outlined,
-                      color: CommonColors.darkGreen,
-                    ),
-                    label: '',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.bookmark_border,
-                      color: CommonColors.black,
-                    ),
-                    label: '',
-                  ),
-                ],
-                // currentIndex: _selectedIndex,
-                selectedItemColor: Colors.amber[800],
-                // onTap: _onItemTapped,
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       backgroundColor: CommonColors.backgroundColor,
       drawer: const DrawerWidget(),
       body: SafeArea(

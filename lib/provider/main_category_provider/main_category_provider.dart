@@ -94,12 +94,22 @@ class MainCategoryProvider with ChangeNotifier {
                   time: DateTime.now(),
                 ),
                 user: UserModel(
-                    id: userMap['id'] ?? 0,
-                    name: userMap['firstName'] ?? 'name',
-                    email: userMap['email'] ?? 'email',
-                    birthDate: userMap['birthdate'] ?? '',
-                    city: userMap['city'] ?? '',
-                    country: userMap['country'] ?? ''),
+                  id: 1,
+                  name: 'name',
+                  email: 'example@email.com',
+                  birthDate: '2000',
+                  city: 'city',
+                  country: 'country',
+                ),
+                // UserModel(
+                // Should be Added in the webservice
+                // id: userMap['id'] ?? 0,
+                // name: userMap['firstName'] ?? 'name',
+                // email: userMap['email'] ?? 'email',
+                // birthDate: userMap['birthdate'] ?? '',
+                // city: userMap['city'] ?? '',
+                // country: userMap['country'] ?? '',
+                // ),
               ));
             }
           }

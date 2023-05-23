@@ -17,7 +17,6 @@ class TopActivityProvider with ChangeNotifier {
   List<ServiceModel> get activities => _activities;
   // Fct
   Future<void> getActivities() async {
-    _activities = [];
     // Token
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -125,6 +124,7 @@ class TopActivityProvider with ChangeNotifier {
           ),
         );
       }
+      _activities = [];
       _activities = extractedActivities;
       print('responseData Activities');
       print(responseData);
