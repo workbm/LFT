@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../gen/assets.gen.dart';
 import '../../screens/home/home_page.dart';
 import '../utils/colors.dart';
 
@@ -65,9 +66,9 @@ class BottomNavigationBarWidget extends StatelessWidget {
                   ),
                   label: '',
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.bookmark_border,
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    Assets.img.agenda.path,
                     color: CommonColors.black,
                   ),
                   label: '',

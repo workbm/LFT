@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/provider/auth/login_provider.dart';
 import 'package:lft_new_project/provider/auth/seconnecter_sinscrire_provider.dart';
@@ -8,12 +9,17 @@ import 'package:lft_new_project/provider/home/categories_provider.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
 import 'package:lft_new_project/router.dart';
-import 'package:lft_new_project/screens/home/home_page.dart';
+import 'package:lft_new_project/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/main_category_provider/main_category_provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(
     MultiProvider(
       providers: [
@@ -71,7 +77,7 @@ class MyApp extends StatelessWidget {
           child: child,
         ),
       ),
-      child: const HomePage(),
+      child: const ProfileScreen(),
     );
   }
 }

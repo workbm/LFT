@@ -259,9 +259,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                           Icons.star,
                                           color: CommonColors.yellow,
                                         ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
+                                        onRatingUpdate: (rating) {},
                                       ),
                                     ],
                                   ),

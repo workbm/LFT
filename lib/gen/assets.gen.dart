@@ -73,6 +73,10 @@ class $AssetsImgGen {
   /// File path: assets/img/object1.png
   AssetGenImage get object1 => const AssetGenImage('assets/img/object1.png');
 
+  /// File path: assets/img/profile-icon.png
+  AssetGenImage get profileIcon =>
+      const AssetGenImage('assets/img/profile-icon.png');
+
   /// File path: assets/img/time.png
   AssetGenImage get time => const AssetGenImage('assets/img/time.png');
 
@@ -96,6 +100,7 @@ class $AssetsImgGen {
         location,
         menu,
         object1,
+        profileIcon,
         time
       ];
 }
