@@ -6,8 +6,6 @@ import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/models/service_model.dart';
-import 'package:lft_new_project/provider/home/top_activity_provider.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../common/utils/colors.dart';
 import '../../../../common/widgets/gap.dart';
@@ -20,7 +18,6 @@ class GlobalViewSnippet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var listenData = context.watch<TopActivityProvider>();
     return Container(
       decoration: BoxDecoration(
           color: CommonColors.white,
@@ -43,7 +40,6 @@ class GlobalViewSnippet extends StatelessWidget {
             context,
             DetailScreen.routeName,
             arguments: serviceModel,
-            // listenData.activities[index],
           );
         },
         child: Row(
@@ -54,7 +50,6 @@ class GlobalViewSnippet extends StatelessWidget {
               child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemCount: serviceModel.images.length,
-                // listenData.activities[index].images.length,
                 itemBuilder: (context, i) => Container(
                   height: 100.h,
                   width: 100.w,
@@ -62,8 +57,6 @@ class GlobalViewSnippet extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(15)),
                     image: DecorationImage(
                       image: CachedNetworkImageProvider(
-                        // 'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-                        // listenData.activities[index].images[i].url,
                         serviceModel.images[i].url,
                       ),
                       fit: BoxFit.cover,

@@ -24,6 +24,14 @@ class LoginProvider with ChangeNotifier {
 
       // SharedPreferences
       prefs.setString('token', responseData['data']['token']);
+      prefs.setInt('id', responseData['profil']['id'] ?? 0);
+      prefs.setString('email', responseData['profil']['email'] ?? '');
+      prefs.setString('name', responseData['profil']['firstName'] ?? '');
+      prefs.setString('city', responseData['profil']['city'] ?? '');
+      prefs.setString('country', responseData['profil']['country'] ?? '');
+      prefs.setString('birthDate', responseData['profil']['birthdate'] ?? '');
+      prefs.setString('picture', responseData['profil']['picture'] ?? '');
+
       //
       print(responseData);
       print('responseData');

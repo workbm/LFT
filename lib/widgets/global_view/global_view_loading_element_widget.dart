@@ -62,7 +62,9 @@ class _GlobalViewLoadingElementWidgetState
                 shrinkWrap: true,
                 itemCount: listenData.length,
                 itemBuilder: (context, index) {
-                  return GlobalViewSnippet(serviceModel: listenData[index]);
+                  return GlobalViewSnippet(
+                    serviceModel: listenData[index],
+                  );
                 },
               ));
   }

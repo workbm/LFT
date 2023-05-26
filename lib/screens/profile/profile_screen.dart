@@ -1,10 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/colors.dart';
+import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/bottom_navigation_bar_widget.dart';
 import 'package:lft_new_project/common/widgets/gap.dart';
+import 'package:lft_new_project/common/widgets/padding.dart';
 import 'package:lft_new_project/gen/assets.gen.dart';
 import 'package:lft_new_project/widgets/home/home_page/menu_widget.dart';
+import 'package:lft_new_project/widgets/profile/tab_bar/account_profile_widget.dart';
+import 'package:lft_new_project/widgets/profile/tab_bar/agenda_profile_widget.dart';
 
 import '../../widgets/drawer_widget.dart';
 
@@ -16,34 +20,34 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  var tabs = [
-    Tab(
-      icon: Image.asset(
-        Assets.img.profileIcon.path,
-        height: 24,
-        width: 24,
-      ),
-    ),
-    Tab(
-      icon: Image.asset(
-        Assets.img.profileIcon.path,
-        height: 24,
-        width: 24,
-      ),
-    ),
-    Tab(
-      icon: Image.asset(
-        Assets.img.profileIcon.path,
-        height: 24,
-        width: 24,
-      ),
-    ),
-  ];
+class _ProfileScreenState extends State<ProfileScreen>
+    with SingleTickerProviderStateMixin {
+  var _loading = false;
+  late TabController _tabController;
+  var _index = 0;
+
+  @override
+  void initState() {
+    setState(() {
+      _loading = true;
+    });
+    _tabController = TabController(length: 3, vsync: this);
+
+    print('index');
+    print(_tabController.index);
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        print('second index');
+        print(_tabController.index);
+        _index = _tabController.index;
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return Scaffold(
       bottomNavigationBar: const BottomNavigationBarWidget(),
       backgroundColor: CommonColors.backgroundColor,
@@ -54,6 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             const MenuWidget(isMenu: true),
             const Gap(height: 20),
+            // Image
             Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
@@ -89,18 +94,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            const Gap(height: 20),
+            // Tab
             Flexible(
               fit: FlexFit.tight,
-              child: DefaultTabController(
-                length: 3,
+              child: PaddingWidget(
+                horizontal: CommonSizes.paddingWith,
+                vertical: 20,
                 child: SizedBox(
-                  // height: 400,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TabBar(
-                        // padding: const EdgeInsets.all(0),
+                        controller: _tabController,
                         labelPadding: const EdgeInsets.symmetric(horizontal: 2),
                         indicator:
                             const BoxDecoration(color: Colors.transparent),
@@ -112,6 +117,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Center(
                                     child: Image.asset(
                                       Assets.img.profileIcon.path,
+                                      color: _index == 0
+                                          ? CommonColors.lightTeal
+                                          : CommonColors.darkGrey2,
                                       height: 24,
                                       width: 24,
                                     ),
@@ -120,7 +128,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Container(
                                   height: 3,
                                   width: double.infinity,
-                                  color: CommonColors.darkGrey2,
+                                  color: _index == 0
+                                      ? CommonColors.lightTeal
+                                      : CommonColors.darkGrey2,
                                 )
                               ],
                             ),
@@ -132,6 +142,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Center(
                                     child: Image.asset(
                                       Assets.img.heart.path,
+                                      color: _index == 1
+                                          ? CommonColors.redMediumLight
+                                          : CommonColors.darkGrey2,
                                       height: 21,
                                       width: 21,
                                     ),
@@ -140,7 +153,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Container(
                                   height: 3,
                                   width: double.infinity,
-                                  color: CommonColors.darkGrey2,
+                                  color: _index == 1
+                                      ? CommonColors.redMediumLight
+                                      : CommonColors.darkGrey2,
                                 )
                               ],
                             ),
@@ -152,6 +167,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Center(
                                     child: Image.asset(
                                       Assets.img.agenda.path,
+                                      color: _index == 2
+                                          ? CommonColors.bluePale
+                                          : CommonColors.darkGrey2,
                                       height: 24,
                                       width: 24,
                                     ),
@@ -160,21 +178,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Container(
                                   height: 3,
                                   width: double.infinity,
-                                  color: CommonColors.darkGrey2,
+                                  color: _index == 2
+                                      ? CommonColors.bluePale
+                                      : CommonColors.darkGrey2,
                                 )
                               ],
                             ),
                           ),
                         ],
                       ),
-                      const Expanded(
-                        child: TabBarView(children: [
-                          SingleChildScrollView(
-                            child: Text('object 1'),
-                          ),
-                          Text('object 2'),
-                          Text('object 3'),
-                        ]),
+                      // TabBarView
+                      Expanded(
+                        child: TabBarView(
+                            controller: _tabController,
+                            children: const [
+                              AccountProfileWidget(),
+                              Text('object 2'),
+                              AgendaProfileWidget()
+                            ]),
                       )
                     ],
                   ),
