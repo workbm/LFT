@@ -7,6 +7,7 @@ import 'package:lft_new_project/models/image_model.dart';
 import 'package:lft_new_project/models/service_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../common/utils/constants.dart';
 import '../../models/comment_model.dart';
 import '../../models/review_model.dart';
 import '../../models/tag.dart';
@@ -43,7 +44,9 @@ class TopRestaurantProvider with ChangeNotifier {
               extractedImages.add(
                 ImageModel(
                   id: ele['id'],
-                  url: Api.urlWithoutApi + (ele['url'] ?? ''),
+                  url:
+                      // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4EipffsrTyo0be-ebYEJ5AMgmNfFthGI-4g&usqp=CAU'
+                      Api.urlWithoutApi + (ele['url'] ?? ''),
                 ),
               );
             }
@@ -107,6 +110,7 @@ class TopRestaurantProvider with ChangeNotifier {
         // Restaurants
         extractedRestaurant.add(
           ServiceModel(
+            mainCategoryName: ConstantsClass.laFamilleGourmandeName,
             id: element['id'],
             name: element['name'] ?? '',
             description: element['description'] ?? '',

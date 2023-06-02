@@ -9,8 +9,10 @@ import 'package:lft_new_project/provider/home/categories_provider.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:lft_new_project/provider/home/top_restaurant_provider.dart';
 import 'package:lft_new_project/provider/profile/agenda_event_provider.dart';
+import 'package:lft_new_project/provider/profile/favorites/add_service_to_favory_provider.dart';
+import 'package:lft_new_project/provider/profile/favorites/favorites_service_profile_provider.dart';
 import 'package:lft_new_project/router.dart';
-import 'package:lft_new_project/screens/profile/profile_screen.dart';
+import 'package:lft_new_project/screens/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/main_category_provider/main_category_provider.dart';
@@ -24,9 +26,12 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+            create: (_) => AddServiceElementToFavoryProvider()),
         ChangeNotifierProvider(create: (_) => AgendaEventProvider()),
         ChangeNotifierProvider(create: (_) => CategoriesProvider()),
         ChangeNotifierProvider(create: (_) => DetailScreenProvider()),
+        ChangeNotifierProvider(create: (_) => FavoriteServiceProvider()),
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => MainCategoryProvider()),
         ChangeNotifierProvider(create: (_) => SeconnecterSinscrireProvider()),
@@ -78,7 +83,7 @@ class MyApp extends StatelessWidget {
           child: child,
         ),
       ),
-      child: const ProfileScreen(),
+      child: const HomePage(),
     );
   }
 }

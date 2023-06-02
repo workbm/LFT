@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lft_new_project/screens/profile/profile_screen.dart';
 
 import '../../gen/assets.gen.dart';
 import '../../screens/home/home_page.dart';
@@ -59,10 +60,15 @@ class BottomNavigationBarWidget extends StatelessWidget {
                   ),
                   label: '',
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person_outlined,
-                    color: CommonColors.darkGreen,
+                BottomNavigationBarItem(
+                  icon: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, ProfileScreen.routeName);
+                    },
+                    child: Icon(
+                      Icons.person_outlined,
+                      color: CommonColors.darkGreen,
+                    ),
                   ),
                   label: '',
                 ),

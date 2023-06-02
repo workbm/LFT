@@ -13,7 +13,6 @@ class AgendaEventProvider with ChangeNotifier {
   List<EventModel> get eventsByDate => _eventsByDate;
   // Fcts
   Future<void> getEventsFct() async {
-    _events = [];
     //
     try {
       //token
@@ -40,12 +39,16 @@ class AgendaEventProvider with ChangeNotifier {
             name: element['title'] ?? '',
             description: element['description'] ?? '',
             address: element['address'] ?? '',
-            date: DateTime.parse(element['date'] ?? ''),
+            date: DateTime(
+                DateTime.parse(element['date'] ?? '').year,
+                DateTime.parse(element['date'] ?? '').month,
+                DateTime.parse(element['date'] ?? '').day),
             startTime: element['startTime'] ?? '',
             endTime: element['endTime'] ?? '',
           ),
         );
       }
+      _events = [];
       _events = extractedEvents;
       notifyListeners();
     } catch (err) {
@@ -57,7 +60,10 @@ class AgendaEventProvider with ChangeNotifier {
 
   // Events By Date
   void eventsByDateFct(DateTime date) {
+    print('eventsByDateFct');
     _eventsByDate = _events.where((element) => element.date == date).toList();
+    print('_eventsByDate');
+    print(_eventsByDate);
     notifyListeners();
   }
 }

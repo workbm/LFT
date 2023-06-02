@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/api.dart';
+import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:lft_new_project/models/comment_model.dart';
 import 'package:lft_new_project/models/review_model.dart';
 import 'package:lft_new_project/models/service_model.dart';
@@ -41,7 +42,9 @@ class TopActivityProvider with ChangeNotifier {
               extractedImages.add(
                 ImageModel(
                   id: ele['id'],
-                  url: Api.urlWithoutApi + (ele['url'] ?? ''),
+                  url:
+                      // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Z-ejZ7ELI_zEz29lGMHu_e3AWmJguCCaIw&usqp=CAU'
+                      Api.urlWithoutApi + (ele['url'] ?? ''),
                 ),
               );
             }
@@ -105,6 +108,7 @@ class TopActivityProvider with ChangeNotifier {
         // ActivityModels
         extractedActivities.add(
           ServiceModel(
+            mainCategoryName: ConstantsClass.laFamilleSamuseName,
             id: element['id'],
             name: element['name'] ?? '',
             description: element['description'] ?? '',

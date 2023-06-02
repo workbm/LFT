@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import '../../../../common/utils/constants.dart';
 import '../../../../provider/detail_screen_provider/detail_screen_provider.dart';
 import '../../../../provider/main_category_provider/main_category_provider.dart';
+import '../favorite_icon_widgte.dart';
 
 class RestaurantSnippet extends StatefulWidget {
   const RestaurantSnippet({super.key});
@@ -88,31 +89,48 @@ class _RestaurantSnippetState extends State<RestaurantSnippet> {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width: 140.w,
-                              height: 125.h,
-                              child: PageView.builder(
-                                itemCount:
-                                    listenData.restaurants[index].images.length,
-                                itemBuilder: (context, i) => Container(
+                            Stack(
+                              children: [
+                                // Slider Image
+                                SizedBox(
                                   width: 140.w,
                                   height: 125.h,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                    image: DecorationImage(
-                                      image: CachedNetworkImageProvider(
-                                        listenData
-                                            .restaurants[index].images[i].url,
-                                        // 'https://image.cnbcfm.com/api/v1/image/107236863-1683379954526-27uIf9mw.jpg?v=1683559680&w=630&h=354&ffmt=webp&vtcrop=y',
+                                  child: PageView.builder(
+                                    itemCount: listenData
+                                        .restaurants[index].images.length,
+                                    itemBuilder: (context, i) => Container(
+                                      width: 140.w,
+                                      height: 125.h,
+                                      decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(15),
+                                          topRight: Radius.circular(15),
+                                        ),
+                                        image: DecorationImage(
+                                          image: CachedNetworkImageProvider(
+                                            listenData.restaurants[index]
+                                                .images[i].url,
+                                            // 'https://image.cnbcfm.com/api/v1/image/107236863-1683379954526-27uIf9mw.jpg?v=1683559680&w=630&h=354&ffmt=webp&vtcrop=y',
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                              ),
+                                // Favorite
+                                Positioned(
+                                    top: 5.h,
+                                    right: 5.w,
+                                    child: FavoriteIconHomeWidget(
+                                      elementID:
+                                          listenData.restaurants[index].id,
+                                      serviceModel:
+                                          ConstantsClass.laFamilleGourmandeName,
+                                      isFavorite:
+                                          listenData.restaurants[index].liked,
+                                    ))
+                              ],
                             ),
                             const Gap(height: 10),
                             SizedBox(

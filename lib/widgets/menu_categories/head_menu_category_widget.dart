@@ -36,7 +36,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
   }
 
   static const _filter = [
-    'Titre',
+    // 'Titre',
     'Date croissant',
     'Date décroissant',
     'Plus aimé',

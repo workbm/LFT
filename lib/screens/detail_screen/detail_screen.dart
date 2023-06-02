@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/common/utils/sizes.dart';
+import 'package:lft_new_project/common/widgets/add_comment_widget.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/gen/assets.gen.dart';
 import 'package:lft_new_project/models/service_model.dart';
 import 'package:lft_new_project/widgets/detail_widget/review_widget.dart';
 import 'package:lft_new_project/widgets/global_view/global_view_widget.dart';
+import 'package:lft_new_project/widgets/home/home_page/favorite_icon_widgte.dart';
 
 import '../../common/utils/colors.dart';
 import '../../common/widgets/bottom_navigation_bar_widget.dart';
@@ -29,7 +31,9 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomNavigationBarWidget(),
+      bottomNavigationBar: !_noteAvisTapped
+          ? const BottomNavigationBarWidget()
+          : const AddCommentWidget(),
       backgroundColor: CommonColors.backgroundColor,
       // drawer: const DrawerWidget(),
       body: SafeArea(
@@ -53,9 +57,25 @@ class _DetailScreenState extends State<DetailScreen> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AutoSizeText(
-                      'Saulx-les-Chartreux, Paris',
-                      style: Theme.of(context).textTheme.headlineLarge,
+                    Row(
+                      children: [
+                        Container(
+                          color: Colors.blueAccent,
+                          width: 250.w,
+                          child: AutoSizeText(
+                            widget.service.name,
+                            maxLines: 1,
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                        ),
+                        const Spacer(),
+                        Image.asset(Assets.img.agenda2.path),
+                        const HorizontalGap(width: 5),
+                        FavoriteIconHomeWidget(
+                            serviceModel: widget.service.mainCategoryName,
+                            elementID: widget.service.id,
+                            isFavorite: widget.service.liked)
+                      ],
                     ),
                     const Gap(height: 10),
                     Row(

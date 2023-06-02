@@ -57,8 +57,9 @@ class ReviewWidget extends StatelessWidget {
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: CachedNetworkImageProvider(
-                          'https://cdn.wallpapersafari.com/22/91/bU2uNi.jpg',
-                        ),
+                            'https://i.guim.co.uk/img/media/07115c7cdf9ba47be3fdb3273b2380488d8edb96/44_279_976_585/master/976.jpg?width=465&quality=85&dpr=1&s=none'
+                            // 'https://cdn.wallpapersafari.com/22/91/bU2uNi.jpg',
+                            ),
                       ),
                     ),
                   ),

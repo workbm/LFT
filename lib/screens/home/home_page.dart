@@ -5,7 +5,7 @@ import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/widgets/home/home_page/menu_widget.dart';
 import 'package:lft_new_project/widgets/home/home_page/restaurant/top_restaurant_widget.dart';
 
-import '../../widgets/drawer_widget.dart';
+import '../../widgets/drawer/drawer_widget.dart';
 import '../../widgets/home/home_page/activity/top_activity_widget.dart';
 
 class HomePage extends StatelessWidget {

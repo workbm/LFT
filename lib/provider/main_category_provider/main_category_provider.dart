@@ -119,12 +119,14 @@ class MainCategoryProvider with ChangeNotifier {
         if (element['avis'] != null) {
           if (element['avis'].isNotEmpty) {
             for (var ele in element['avis']) {
-              extractedReviews.add(ReviewModel(
-                  id: ele['id'] ?? 0,
-                  userID: ele['userId'] ?? 0,
-                  serviceID: 0,
-                  rating: (ele['avis'] ?? 0).toDouble(),
-                  time: DateTime.now()));
+              extractedReviews.add(
+                ReviewModel(
+                    id: ele['id'] ?? 0,
+                    userID: ele['userId'] ?? 0,
+                    serviceID: 0,
+                    rating: (ele['avis'] ?? 0).toDouble(),
+                    time: DateTime.now()),
+              );
             }
           }
         }
@@ -139,9 +141,23 @@ class MainCategoryProvider with ChangeNotifier {
             }
           }
         }
-        // Restaurants
+        // MainCategoryName
+        if (_categoryUrl.contains(Api.restaurantByCategory)) {
+          _mainCategoryTitle = ConstantsClass.laFamilleGourmandeName;
+        }
+        if (_categoryUrl.contains(Api.activitiesByCategory)) {
+          _mainCategoryTitle = ConstantsClass.laFamilleSamuseName;
+        }
+        if (_categoryUrl.contains(Api.shopByCategory)) {
+          _mainCategoryTitle = ConstantsClass.laFamilleShopName;
+        }
+        if (_categoryUrl.contains(Api.visiteByCategory)) {
+          _mainCategoryTitle = ConstantsClass.laFamilleVisiteName;
+        }
+        // Service Model
         extractedRestaurants.add(
           ServiceModel(
+            mainCategoryName: _mainCategoryTitle,
             id: element['id'],
             name: element['name'] ?? '',
             description: element['description'] ?? '',

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../../common/utils/colors.dart';
 import '../../common/widgets/bottom_navigation_bar_widget.dart';
 import '../../common/widgets/gap.dart';
-import '../../widgets/drawer_widget.dart';
+import '../../widgets/drawer/drawer_widget.dart';
 import '../../widgets/home/home_page/menu_widget.dart';
 
 class MainCategoryScreen extends StatelessWidget {

@@ -13,6 +13,7 @@ class CommonColors {
   static const bayLeaf = Color(0xff79BD8F);
   static const blue = Color(0xff018AC5);
   static const bluePale = Color(0xffB0DDFF);
+  static const blueRaven = Color(0xff6B7280);
   static const darkGrey = Color(0xff9CA3AF);
   static const darkGrey2 = Color(0xffE9E9E9);
   static const darkGreen2 = Color(0xff32B768);

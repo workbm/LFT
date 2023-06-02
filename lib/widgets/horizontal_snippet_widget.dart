@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/provider/main_category_provider/main_category_provider.dart';
+import 'package:lft_new_project/widgets/remise_global_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../common/utils/colors.dart';
@@ -10,6 +11,7 @@ import '../common/utils/sizes.dart';
 import '../common/widgets/gap.dart';
 import '../common/widgets/horizontal_gap.dart';
 import '../common/widgets/likes_widget.dart';
+import 'home/home_page/favorite_icon_widgte.dart';
 
 class HorizontalSnippetWidget extends StatelessWidget {
   const HorizontalSnippetWidget({super.key});
@@ -33,7 +35,7 @@ class HorizontalSnippetWidget extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(15))),
             padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 7.w),
             margin: EdgeInsets.only(
-                bottom: 5,
+                bottom: 10.h,
                 right: CommonSizes.paddingWith,
                 left: CommonSizes.paddingWith),
             child: Row(
@@ -46,12 +48,12 @@ class HorizontalSnippetWidget extends StatelessWidget {
                     itemBuilder: (context, i) => Container(
                       height: 100.h,
                       width: 100.w,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15)),
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(
-                            'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-                            // listenData.activities[index].images[i].url,
+                            listenData.services[index].images[i].url,
                           ),
                           fit: BoxFit.cover,
                         ),
@@ -79,7 +81,13 @@ class HorizontalSnippetWidget extends StatelessWidget {
                               style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
-                          Icon(Icons.favorite_border, size: 20.w),
+                          FavoriteIconHomeWidget(
+                            serviceModel:
+                                listenData.services[index].mainCategoryName,
+                            elementID: listenData.services[index].id,
+                            isFavorite: listenData.services[index].liked,
+                          ),
+                          // Icon(Icons.favorite_border, size: 20.w),
                         ],
                       ),
                     ),
@@ -119,27 +127,9 @@ class HorizontalSnippetWidget extends StatelessWidget {
                           const Spacer(),
                           !listenData.services[index].haveDiscount
                               ? const SizedBox()
-                              : Container(
-                                  height: 20.h,
-                                  width: 50.w,
-                                  decoration: const BoxDecoration(
-                                    color: CommonColors.red,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(3)),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 1.w, vertical: 2.h),
-                                  child: Center(
-                                    child: AutoSizeText(
-                                      listenData.services[index].remise
-                                          .toString(),
-                                      minFontSize: 8,
-                                      maxLines: 1,
-                                      style: const TextStyle(
-                                        color: CommonColors.white,
-                                      ),
-                                    ),
-                                  ),
+                              : RemiseGlobalWidget(
+                                  remise: listenData.services[index].remise
+                                      .toString(),
                                 ),
                           const HorizontalGap(width: 3),
                           Container(

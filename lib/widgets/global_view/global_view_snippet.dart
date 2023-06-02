@@ -6,6 +6,7 @@ import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/horizontal_gap.dart';
 import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/models/service_model.dart';
+import 'package:lft_new_project/widgets/remise_global_widget.dart';
 
 import '../../../../common/utils/colors.dart';
 import '../../../../common/widgets/gap.dart';
@@ -117,28 +118,31 @@ class GlobalViewSnippet extends StatelessWidget {
                       !serviceModel.haveDiscount
                           // !listenData.activities[index].haveDiscount
                           ? const SizedBox()
-                          : Container(
-                              height: 20.h,
-                              width: 50.w,
-                              decoration: const BoxDecoration(
-                                color: CommonColors.red,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(3)),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 1.w, vertical: 2.h),
-                              child: Center(
-                                child: AutoSizeText(
-                                  // listenData.activities[index].remise
-                                  serviceModel.remise.toString(),
-                                  minFontSize: 8,
-                                  maxLines: 1,
-                                  style: const TextStyle(
-                                    color: CommonColors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
+                          : RemiseGlobalWidget(
+                              remise: serviceModel.remise.toString()),
+                      // Container(
+                      //     height: 20.h,
+                      //     width: 50.w,
+                      //     decoration: const BoxDecoration(
+                      //       color: CommonColors.red,
+                      //       borderRadius:
+                      //           BorderRadius.all(Radius.circular(3)),
+                      //     ),
+                      //     padding: EdgeInsets.symmetric(
+                      //         horizontal: 1.w, vertical: 2.h),
+                      //     child: Center(
+                      //       child: AutoSizeText(
+                      //         // listenData.activities[index].remise
+                      //         serviceModel.remise.toString(),
+                      //         minFontSize: 8,
+                      //         maxLines: 1,
+                      //         style: const TextStyle(
+                      //           color: CommonColors.white,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+
                       const HorizontalGap(width: 3),
                       Container(
                         height: 20.h,

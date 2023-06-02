@@ -1,13 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lft_new_project/common/utils/constants.dart';
 
-import '../common/utils/colors.dart';
-import '../common/utils/sizes.dart';
-import '../common/widgets/gap.dart';
-import '../common/widgets/horizontal_gap.dart';
-import 'home/menu/menu_card_widget.dart';
+import 'package:lft_new_project/common/utils/constants.dart';
+import 'package:lft_new_project/screens/profile/profile_screen.dart';
+import 'package:lft_new_project/widgets/drawer/logout_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../common/utils/colors.dart';
+import '../../common/utils/sizes.dart';
+import '../../common/widgets/gap.dart';
+import '../../common/widgets/horizontal_gap.dart';
+import '../home/menu/menu_card_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -66,6 +70,9 @@ class DrawerWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7),
                   ),
                   child: ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, ProfileScreen.routeName);
+                    },
                     title: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: const [
@@ -98,26 +105,7 @@ class DrawerWidget extends StatelessWidget {
                 const MenuCardWidget(choice: ConstantsClass.agendaName),
                 const MenuCardWidget(choice: ConstantsClass.infosPratiquesName),
                 const Gap(height: 11),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  child: ListTile(
-                    title: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(
-                          Icons.logout,
-                          color: CommonColors.red,
-                        ),
-                        HorizontalGap(width: 20),
-                        Text(
-                          'Déconnexion',
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                const LogOutWidget(),
               ],
             ),
           ),

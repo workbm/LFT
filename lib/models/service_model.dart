@@ -5,7 +5,7 @@ import 'tag.dart';
 
 class ServiceModel {
   int id, categoryID, favouriteCount, likedCount;
-  String name, description;
+  String mainCategoryName, name, description;
   bool haveDiscount, liked;
   double avgRating, latitude, longitude, remise;
   List<ImageModel> images;
@@ -13,6 +13,7 @@ class ServiceModel {
   List<ReviewModel> reviewList;
   List<TagModel> tagList;
   ServiceModel({
+    required this.mainCategoryName,
     required this.id,
     required this.name,
     required this.description,

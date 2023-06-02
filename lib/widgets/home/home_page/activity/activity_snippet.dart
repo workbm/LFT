@@ -9,6 +9,8 @@ import 'package:lft_new_project/common/widgets/likes_widget.dart';
 import 'package:lft_new_project/provider/detail_screen_provider/detail_screen_provider.dart';
 import 'package:lft_new_project/provider/home/top_activity_provider.dart';
 import 'package:lft_new_project/provider/main_category_provider/main_category_provider.dart';
+import 'package:lft_new_project/widgets/home/home_page/favorite_icon_widgte.dart';
+import 'package:lft_new_project/widgets/remise_global_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/utils/colors.dart';
@@ -40,7 +42,7 @@ class ActivitySnippet extends StatelessWidget {
           left: CommonSizes.paddingWith),
       child: GestureDetector(
         onTap: () {
-          // Added To use Voi Plus
+          // Added To use Voir Plus
           context
               .read<MainCategoryProvider>()
               .goToSpecificCategory(ConstantsClass.laFamilleSamuseName);
@@ -56,27 +58,42 @@ class ActivitySnippet extends StatelessWidget {
         },
         child: Row(
           children: [
-            SizedBox(
-              height: 100.h,
-              width: 100.w,
-              child: PageView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: listenData.activities[index].images.length,
-                itemBuilder: (context, i) => Container(
+            Stack(
+              children: [
+                SizedBox(
                   height: 100.h,
                   width: 100.w,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    image: DecorationImage(
-                      image: CachedNetworkImageProvider(
-                        // 'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
-                        listenData.activities[index].images[i].url,
+                  child: PageView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: listenData.activities[index].images.length,
+                    itemBuilder: (context, i) => Container(
+                      height: 100.h,
+                      width: 100.w,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15)),
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            // 'https://image.cnbcfm.com/api/v1/image/107237975-1683618281463-gettyimages-1246198060-20221229_bath_golf_course_views_007.jpeg?v=1683629943&w=630&h=354&ffmt=webp&vtcrop=y',
+                            listenData.activities[index].images[i].url,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-              ),
+                // Favorite Widget
+                Positioned(
+                  top: 4,
+                  right: 4,
+                  child: FavoriteIconHomeWidget(
+                    serviceModel: ConstantsClass.laFamilleSamuseName,
+                    elementID: listenData.activities[index].id,
+                    isFavorite: listenData.activities[index].liked,
+                  ),
+                )
+              ],
             ),
             const HorizontalGap(width: 7),
             Column(
@@ -127,28 +144,32 @@ class ActivitySnippet extends StatelessWidget {
                       const Spacer(),
                       !listenData.activities[index].haveDiscount
                           ? const SizedBox()
-                          : Container(
-                              height: 20.h,
-                              width: 50.w,
-                              decoration: const BoxDecoration(
-                                color: CommonColors.red,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(3)),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 1.w, vertical: 2.h),
-                              child: Center(
-                                child: AutoSizeText(
-                                  listenData.activities[index].remise
-                                      .toString(),
-                                  minFontSize: 8,
-                                  maxLines: 1,
-                                  style: const TextStyle(
-                                    color: CommonColors.white,
-                                  ),
-                                ),
-                              ),
+                          : RemiseGlobalWidget(
+                              remise: listenData.activities[index].remise
+                                  .toString(),
                             ),
+                      // Container(
+                      //     height: 20.h,
+                      //     width: 50.w,
+                      //     decoration: const BoxDecoration(
+                      //       color: CommonColors.red,
+                      //       borderRadius:
+                      //           BorderRadius.all(Radius.circular(3)),
+                      //     ),
+                      //     padding: EdgeInsets.symmetric(
+                      //         horizontal: 1.w, vertical: 2.h),
+                      //     child: Center(
+                      //       child: AutoSizeText(
+                      //         listenData.activities[index].remise
+                      //             .toString(),
+                      //         minFontSize: 8,
+                      //         maxLines: 1,
+                      //         style: const TextStyle(
+                      //           color: CommonColors.white,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
                       const HorizontalGap(width: 3),
                       Container(
                         height: 20.h,

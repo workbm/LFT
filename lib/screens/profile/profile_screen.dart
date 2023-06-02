@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/colors.dart';
-import 'package:lft_new_project/common/utils/sizes.dart';
 import 'package:lft_new_project/common/widgets/bottom_navigation_bar_widget.dart';
 import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/common/widgets/padding.dart';
@@ -9,8 +8,10 @@ import 'package:lft_new_project/gen/assets.gen.dart';
 import 'package:lft_new_project/widgets/home/home_page/menu_widget.dart';
 import 'package:lft_new_project/widgets/profile/tab_bar/account_profile_widget.dart';
 import 'package:lft_new_project/widgets/profile/tab_bar/agenda_profile_widget.dart';
+import 'package:lft_new_project/widgets/profile/tab_bar/favorite/main_catygories_choices.dart';
 
-import '../../widgets/drawer_widget.dart';
+import '../../common/utils/sizes.dart';
+import '../../widgets/drawer/drawer_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -97,14 +98,14 @@ class _ProfileScreenState extends State<ProfileScreen>
             // Tab
             Flexible(
               fit: FlexFit.tight,
-              child: PaddingWidget(
-                horizontal: CommonSizes.paddingWith,
-                vertical: 20,
-                child: SizedBox(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TabBar(
+              child: SizedBox(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PaddingWidget(
+                      horizontal: CommonSizes.paddingWith,
+                      vertical: 20,
+                      child: TabBar(
                         controller: _tabController,
                         labelPadding: const EdgeInsets.symmetric(horizontal: 2),
                         indicator:
@@ -141,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 Expanded(
                                   child: Center(
                                     child: Image.asset(
-                                      Assets.img.heart.path,
+                                      Assets.img.favories.path,
                                       color: _index == 1
                                           ? CommonColors.redMediumLight
                                           : CommonColors.darkGrey2,
@@ -187,18 +188,18 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ],
                       ),
-                      // TabBarView
-                      Expanded(
-                        child: TabBarView(
-                            controller: _tabController,
-                            children: const [
-                              AccountProfileWidget(),
-                              Text('object 2'),
-                              AgendaProfileWidget()
-                            ]),
-                      )
-                    ],
-                  ),
+                    ),
+                    // TabBarView
+                    Expanded(
+                      child: TabBarView(
+                          controller: _tabController,
+                          children: const [
+                            AccountProfileWidget(),
+                            MainCategoriesChoicesProfileWidget(),
+                            AgendaProfileWidget()
+                          ]),
+                    )
+                  ],
                 ),
               ),
             )

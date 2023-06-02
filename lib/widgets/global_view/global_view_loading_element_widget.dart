@@ -50,22 +50,23 @@ class _GlobalViewLoadingElementWidgetState
         : listenData = context.watch<TopActivityProvider>().activities;
 
     return Container(
-        // decoration: const BoxDecoration(color: Colors.orange),
-        height: 230.h,
-        width: double.infinity,
-        margin: const EdgeInsets.only(bottom: 5),
-        child: _isLoading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(
-                shrinkWrap: true,
-                itemCount: listenData.length,
-                itemBuilder: (context, index) {
-                  return GlobalViewSnippet(
-                    serviceModel: listenData[index],
-                  );
-                },
-              ));
+      // decoration: const BoxDecoration(color: Colors.orange),
+      height: 230.h,
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 5),
+      child: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              shrinkWrap: true,
+              itemCount: listenData.length,
+              itemBuilder: (context, index) {
+                return GlobalViewSnippet(
+                  serviceModel: listenData[index],
+                );
+              },
+            ),
+    );
   }
 }

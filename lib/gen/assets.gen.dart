@@ -27,6 +27,9 @@ class $AssetsImgGen {
   /// File path: assets/img/agenda.png
   AssetGenImage get agenda => const AssetGenImage('assets/img/agenda.png');
 
+  /// File path: assets/img/agenda2.png
+  AssetGenImage get agenda2 => const AssetGenImage('assets/img/agenda2.png');
+
   /// File path: assets/img/background-image-login.png
   AssetGenImage get backgroundImageLogin =>
       const AssetGenImage('assets/img/background-image-login.png');
@@ -49,6 +52,9 @@ class $AssetsImgGen {
   /// File path: assets/img/famille-visite.png
   AssetGenImage get familleVisite =>
       const AssetGenImage('assets/img/famille-visite.png');
+
+  /// File path: assets/img/favories.png
+  AssetGenImage get favories => const AssetGenImage('assets/img/favories.png');
 
   /// File path: assets/img/google-icon.png
   AssetGenImage get googleIcon =>
@@ -87,12 +93,14 @@ class $AssetsImgGen {
         scroll3,
         scroll,
         agenda,
+        agenda2,
         backgroundImageLogin,
         comment,
         familleGourmande,
         familleSamuse,
         familleShop,
         familleVisite,
+        favories,
         googleIcon,
         heart,
         home,
