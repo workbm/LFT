@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/common/utils/colors.dart';
 import 'package:lft_new_project/common/widgets/gap.dart';
 import 'package:lft_new_project/common/widgets/padding.dart';
@@ -6,6 +7,8 @@ import 'package:lft_new_project/screens/intro/screen_1.dart';
 import 'package:lft_new_project/screens/intro/screen_3.dart';
 import 'package:lft_new_project/widgets/intro/row_widget.dart';
 import 'package:lft_new_project/widgets/intro/skipe_widget.dart';
+
+import '../../gen/assets.gen.dart';
 
 class Screen2 extends StatelessWidget {
   const Screen2({super.key});
@@ -39,15 +42,43 @@ class Screen2 extends StatelessWidget {
                     Gap(height: size.height * 0.15),
                     Image.asset(
                       'assets/img/object1.png',
+                      height: 250.h,
                       fit: BoxFit.cover,
                     ),
-                    Gap(height: size.height * 0.15),
-                    const Text(
-                      'Simplifiez\nla planification de vos vacances\navec La Famille Testeuse',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    const Gap(height: 30),
+                    SizedBox(
+                      height: 60.h,
+                      child: Image.asset(
+                        Assets.img.layer1.path,
+                        fit: BoxFit.cover,
+                      ),
                     ),
+                    const Gap(height: 30),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 16,
+                              color: CommonColors.blueCloudBurst,
+                            ),
+                        children: const [
+                          TextSpan(text: 'l\''),
+                          TextSpan(
+                            text: 'organisation',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          TextSpan(text: ' de vos vacances\n'),
+                          TextSpan(text: 'avec La Famille Testeuse'),
+                        ],
+                      ),
+                    ),
+                    // const Text(
+                    //   'l\'organisation de vos vacances avec La Famille Testeuse',
+                    //   textAlign: TextAlign.center,
+                    //   style:
+                    //       TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    // ),
                     Gap(height: size.height * 0.10),
                     const RowWidget(
                       firstColor: CommonColors.pink,

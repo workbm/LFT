@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lft_new_project/screens/auth/login.dart';
 import 'package:lft_new_project/screens/intro/screen_3.dart';
 
 import '../../common/utils/colors.dart';
 import '../../common/widgets/gap.dart';
 import '../../common/widgets/padding.dart';
+import '../../gen/assets.gen.dart';
 import '../../widgets/intro/row_widget.dart';
 import '../../widgets/intro/skipe_widget.dart';
 
@@ -39,17 +41,40 @@ class Screen4 extends StatelessWidget {
                     const SkipeWidget(),
                     Gap(height: size.height * 0.15),
                     Image.asset(
-                      'assets/img/object1.png',
+                      Assets.img.image3.path,
+                      height: 250.h,
+                      // 'assets/img/object1.png',
                       fit: BoxFit.cover,
                     ),
-                    Gap(height: size.height * 0.15),
-                    const Text(
-                      'Screen 4 Simplifiez\nla planification de vos vacances\navec La Famille Testeuse',
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    const Gap(height: 30),
+                    SizedBox(
+                      height: 60.h,
+                      child: Image.asset(
+                        Assets.img.layer3.path,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    Gap(height: size.height * 0.10),
+                    const Gap(height: 30),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 16,
+                              color: CommonColors.blueCloudBurst,
+                            ),
+                        children: const [
+                          TextSpan(text: 'Des '),
+                          TextSpan(
+                            text: 'plans ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          TextSpan(text: 'exclusifs avec\n'),
+                          TextSpan(text: 'nos réductions incomparables'),
+                        ],
+                      ),
+                    ),
+                    const Gap(height: 50),
                     const RowWidget(
                       firstColor: CommonColors.pink,
                       secondColor: CommonColors.yellow,

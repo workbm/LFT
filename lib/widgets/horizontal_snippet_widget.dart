@@ -65,15 +65,15 @@ class HorizontalSnippetWidget extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      color: Colors.yellow,
+                    SizedBox(
+                      // color: Colors.yellow,
                       width: 203.w,
                       height: 30.h,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            color: Colors.blueAccent,
+                          SizedBox(
+                            // color: Colors.blueAccent,
                             width: 170.w,
                             height: 30.h,
                             child: AutoSizeText(
@@ -92,8 +92,8 @@ class HorizontalSnippetWidget extends StatelessWidget {
                       ),
                     ),
                     const Gap(height: 5),
-                    Container(
-                      color: Colors.teal,
+                    SizedBox(
+                      // color: Colors.teal,
                       width: 203.w,
                       height: 30.h,
                       child: AutoSizeText(
@@ -102,9 +102,9 @@ class HorizontalSnippetWidget extends StatelessWidget {
                       ),
                     ),
                     const Gap(height: 5),
-                    Container(
+                    SizedBox(
                       width: 203.w,
-                      color: Colors.orange,
+                      // color: Colors.orange,
                       child: Row(
                         children: [
                           const LikesCommentWidget(

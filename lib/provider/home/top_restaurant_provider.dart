@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common/utils/constants.dart';
 import '../../models/comment_model.dart';
+import '../../models/like_model.dart';
 import '../../models/review_model.dart';
 import '../../models/tag.dart';
 import '../../models/user_model.dart';
@@ -82,6 +83,17 @@ class TopRestaurantProvider with ChangeNotifier {
             }
           }
         }
+        // Liked List
+        List<LikeModel> extractedLikedList = [];
+        if (element['likes'] != null) {
+          if (element['likes'].isNotEmpty) {
+            for (var ele in element['likes']) {
+              extractedLikedList.add(
+                LikeModel(id: ele['id'], userID: ele['userId']),
+              );
+            }
+          }
+        }
         // Reviews
         List<ReviewModel> extractedReviews = [];
         if (element['avis'] != null) {
@@ -119,6 +131,7 @@ class TopRestaurantProvider with ChangeNotifier {
             favouriteCount: element['favourite_count'] ?? 0,
             liked: (element['like'] ?? 0) == 0 ? false : true,
             likedCount: element['liked_count'] ?? 0,
+            likedList: extractedLikedList,
             latitude: (element['latitude'] ?? 0).toDouble(),
             longitude: (element['longitude'] ?? 0).toDouble(),
             haveDiscount: (element['haveDiscount'] ?? 0) == 0 ? false : true,

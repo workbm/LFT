@@ -130,6 +130,9 @@ class _LoginCredentialWidgetState extends State<LoginCredentialWidget> {
       await context
           .read<LoginProvider>()
           .login(_emailController.text, _passController.text);
+      if (!mounted) {
+        return;
+      }
       Navigator.pushReplacementNamed(context, HomePage.routeName);
     } on Exception catch (error) {
       print('error');

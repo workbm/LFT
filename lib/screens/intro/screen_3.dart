@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lft_new_project/gen/assets.gen.dart';
 
 import '../../common/utils/colors.dart';
 import '../../common/widgets/gap.dart';
@@ -39,17 +41,39 @@ class Screen3 extends StatelessWidget {
                     const SkipeWidget(),
                     Gap(height: size.height * 0.15),
                     Image.asset(
-                      'assets/img/object1.png',
+                      Assets.img.image2.path, // 'assets/img/object1.png',
                       fit: BoxFit.cover,
+                      height: 250.h,
                     ),
-                    Gap(height: size.height * 0.15),
-                    const Text(
-                      'Screen 3 Simplifiez\nla planification de vos vacances\navec La Famille Testeuse',
+                    const Gap(height: 30),
+                    SizedBox(
+                      height: 60.h,
+                      child: Image.asset(
+                        Assets.img.layer2.path,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const Gap(height: 30),
+                    RichText(
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 16,
+                              color: CommonColors.blueCloudBurst,
+                            ),
+                        children: const [
+                          TextSpan(text: 'les '),
+                          TextSpan(
+                            text: 'meilleures ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          TextSpan(text: 'activités\n'),
+                          TextSpan(text: 'pour  toute la famille'),
+                        ],
+                      ),
                     ),
-                    Gap(height: size.height * 0.10),
+                    const Gap(height: 50),
                     const RowWidget(
                       firstColor: CommonColors.pink,
                       secondColor: CommonColors.yellow,

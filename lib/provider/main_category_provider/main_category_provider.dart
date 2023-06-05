@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import '../../common/utils/api.dart';
 import '../../models/comment_model.dart';
 import '../../models/image_model.dart';
+import '../../models/like_model.dart';
 import '../../models/review_model.dart';
 import '../../models/tag.dart';
 import '../../models/user_model.dart';
@@ -31,9 +32,15 @@ class MainCategoryProvider with ChangeNotifier {
   String get mainCategoryTitle => _mainCategoryTitle;
   String _categoryTitle = '';
   String get categoryTitle => _categoryTitle;
-  // Restaurants
+  // Services
   List<ServiceModel> _services = [];
   List<ServiceModel> get services => _services;
+  // Services With Filter By Liked Count
+  final List<ServiceModel> _servicesByLikedCount = [];
+  List<ServiceModel> get servicesByLikedCount => _servicesByLikedCount;
+  // Services
+  final List<ServiceModel> _servicesByCommentsCount = [];
+  List<ServiceModel> get servicesByCommentsCount => _servicesByCommentsCount;
   // Sub Category Name
   final String _subCategoryName = '';
   String get subCategoryName => _subCategoryName;
@@ -114,6 +121,17 @@ class MainCategoryProvider with ChangeNotifier {
             }
           }
         }
+        // Liked List
+        List<LikeModel> extractedLikedList = [];
+        if (element['likes'] != null) {
+          if (element['likes'].isNotEmpty) {
+            for (var ele in element['likes']) {
+              extractedLikedList.add(
+                LikeModel(id: ele['id'], userID: ele['userId']),
+              );
+            }
+          }
+        }
         // Reviews
         List<ReviewModel> extractedReviews = [];
         if (element['avis'] != null) {
@@ -165,7 +183,9 @@ class MainCategoryProvider with ChangeNotifier {
             categoryID: element['categoryId'] ?? 0,
             favouriteCount: element['favourite_count'] ?? 0,
             liked: (element['like'] ?? 0) == 0 ? false : true,
-            likedCount: element['liked_count'] ?? 0,
+            likedCount: extractedLikedList.length,
+            // element['liked_count'] ?? 0,
+            likedList: extractedLikedList,
             latitude: (element['latitude'] ?? 0).toDouble(),
             longitude: (element['longitude'] ?? 0).toDouble(),
             haveDiscount: (element['haveDiscount'] ?? 0) == 0 ? false : true,
@@ -185,6 +205,22 @@ class MainCategoryProvider with ChangeNotifier {
       print(err);
       rethrow;
     }
+  }
+
+  // Filter By Liked Count
+  void filterByLikedCountFct() {
+    _services.sort(
+      (a, b) => b.likedCount.compareTo(a.likedCount),
+    );
+    notifyListeners();
+  }
+
+  // Filter By Comment Count
+  void filterByCommentCountFct() {
+    _services.sort(
+      (a, b) => a.commentList.length.compareTo(b.commentList.length),
+    );
+    notifyListeners();
   }
 
   void getCategoryInfo(

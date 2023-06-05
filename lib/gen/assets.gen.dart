@@ -66,9 +66,24 @@ class $AssetsImgGen {
   /// File path: assets/img/home.png
   AssetGenImage get home => const AssetGenImage('assets/img/home.png');
 
+  /// File path: assets/img/image2.png
+  AssetGenImage get image2 => const AssetGenImage('assets/img/image2.png');
+
+  /// File path: assets/img/image3.png
+  AssetGenImage get image3 => const AssetGenImage('assets/img/image3.png');
+
   /// File path: assets/img/info-pratique.png
   AssetGenImage get infoPratique =>
       const AssetGenImage('assets/img/info-pratique.png');
+
+  /// File path: assets/img/layer1.png
+  AssetGenImage get layer1 => const AssetGenImage('assets/img/layer1.png');
+
+  /// File path: assets/img/layer2.png
+  AssetGenImage get layer2 => const AssetGenImage('assets/img/layer2.png');
+
+  /// File path: assets/img/layer3.png
+  AssetGenImage get layer3 => const AssetGenImage('assets/img/layer3.png');
 
   /// File path: assets/img/location.png
   AssetGenImage get location => const AssetGenImage('assets/img/location.png');
@@ -104,7 +119,12 @@ class $AssetsImgGen {
         googleIcon,
         heart,
         home,
+        image2,
+        image3,
         infoPratique,
+        layer1,
+        layer2,
+        layer3,
         location,
         menu,
         object1,

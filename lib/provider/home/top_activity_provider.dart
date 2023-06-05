@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/api.dart';
 import 'package:lft_new_project/common/utils/constants.dart';
 import 'package:lft_new_project/models/comment_model.dart';
+import 'package:lft_new_project/models/like_model.dart';
 import 'package:lft_new_project/models/review_model.dart';
 import 'package:lft_new_project/models/service_model.dart';
 import 'package:lft_new_project/models/tag.dart';
@@ -80,6 +81,17 @@ class TopActivityProvider with ChangeNotifier {
             }
           }
         }
+        // Liked List
+        List<LikeModel> extractedLikedList = [];
+        if (element['likes'] != null) {
+          if (element['likes'].isNotEmpty) {
+            for (var ele in element['likes']) {
+              extractedLikedList.add(
+                LikeModel(id: ele['id'], userID: ele['userId']),
+              );
+            }
+          }
+        }
         // Reviews
         List<ReviewModel> extractedReviews = [];
         if (element['avis'] != null) {
@@ -117,6 +129,7 @@ class TopActivityProvider with ChangeNotifier {
             favouriteCount: element['favourite_count'] ?? 0,
             liked: (element['like'] ?? 0) == 0 ? false : true,
             likedCount: element['liked_count'] ?? 0,
+            likedList: extractedLikedList,
             latitude: (element['latitude'] ?? 0).toDouble(),
             longitude: (element['longitude'] ?? 0).toDouble(),
             haveDiscount: (element['haveDiscount'] ?? 0) == 0 ? false : true,

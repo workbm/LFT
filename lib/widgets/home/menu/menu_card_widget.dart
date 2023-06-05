@@ -159,20 +159,23 @@ class _MenuCardWidgetState extends State<MenuCardWidget> {
                       //                             : _choice7['elements']
                       //                                 as List<String>)
                       .map((e) => GestureDetector(
-                            onTap: () {
-                              context
-                                  .read<MainCategoryProvider>()
-                                  .getCategoryInfo(
-                                      categoriesMap['title'] as String,
-                                      categoriesMap['image'] as String,
-                                      e.name,
-                                      e.url,
-                                      e.id,
-                                      categoriesMap['catygories']
-                                          as List<CategoryModel>);
-                              Navigator.pushNamed(
-                                  context, MainCategoryScreen.routeName);
-                            },
+                            onTap: widget.choice
+                                    .contains(ConstantsClass.infosPratiquesName)
+                                ? () {}
+                                : () {
+                                    context
+                                        .read<MainCategoryProvider>()
+                                        .getCategoryInfo(
+                                            categoriesMap['title'] as String,
+                                            categoriesMap['image'] as String,
+                                            e.name,
+                                            e.url,
+                                            e.id,
+                                            categoriesMap['catygories']
+                                                as List<CategoryModel>);
+                                    Navigator.pushNamed(
+                                        context, MainCategoryScreen.routeName);
+                                  },
                             child: ListTile(
                               dense: true,
                               title: Row(

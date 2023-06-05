@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/comment_model.dart';
 import '../../../models/image_model.dart';
+import '../../../models/like_model.dart';
 import '../../../models/review_model.dart';
 import '../../../models/tag.dart';
 import '../../../models/user_model.dart';
@@ -79,7 +80,7 @@ class FavoriteServiceProvider with ChangeNotifier {
       if (element['comments'] != null) {
         for (var ele in element['comments']) {
           if (element['comments'].isNotEmpty) {
-            final userMap = ele['user'];
+            final userMap = ele['user'] ?? {};
             extractedComments.add(CommentModel(
               id: ele['id'] ?? 0,
               userID: ele['userId'] ?? 0,
@@ -101,6 +102,17 @@ class FavoriteServiceProvider with ChangeNotifier {
                   city: userMap['city'] ?? '',
                   country: userMap['country'] ?? ''),
             ));
+          }
+        }
+      }
+      // Liked List
+      List<LikeModel> extractedLikedList = [];
+      if (element['likes'] != null) {
+        if (element['likes'].isNotEmpty) {
+          for (var ele in element['likes']) {
+            extractedLikedList.add(
+              LikeModel(id: ele['id'], userID: ele['userId']),
+            );
           }
         }
       }
@@ -141,6 +153,7 @@ class FavoriteServiceProvider with ChangeNotifier {
           favouriteCount: element['favourite_count'] ?? 0,
           liked: (element['like'] ?? 0) == 0 ? false : true,
           likedCount: element['liked_count'] ?? 0,
+          likedList: extractedLikedList,
           latitude: (element['latitude'] ?? 0).toDouble(),
           longitude: (element['longitude'] ?? 0).toDouble(),
           haveDiscount: (element['haveDiscount'] ?? 0) == 0 ? false : true,

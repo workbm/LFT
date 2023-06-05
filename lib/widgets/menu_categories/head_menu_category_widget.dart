@@ -37,8 +37,8 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
 
   static const _filter = [
     // 'Titre',
-    'Date croissant',
-    'Date décroissant',
+    // 'Date croissant',
+    // 'Date décroissant',
     'Plus aimé',
     'Plus commenté'
   ];
@@ -58,8 +58,8 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
               Image.asset(listenData.mainCategoryImage,
                   height: 20.h, width: 20.w),
               const HorizontalGap(width: 5),
-              Container(
-                color: Colors.teal,
+              SizedBox(
+                // color: Colors.teal,
                 width: 230.w,
                 child: AutoSizeText(listenData.mainCategoryTitle,
                     style: Theme.of(context).textTheme.headlineLarge),
@@ -74,9 +74,9 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 50.w,
-                      color: Colors.amber,
+                      // color: Colors.amber,
                       child: const AutoSizeText(
                         'Trier par',
                         maxLines: 1,
@@ -102,7 +102,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
             children: [
               HorizontalGap(width: 25.w),
               Container(
-                color: Colors.red.shade100,
+                // color: Colors.red.shade100,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -116,7 +116,7 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Container(
-                            color: Colors.amber,
+                            // color: Colors.amber,
                             child: Text(
                               listenData.categoryTitle,
                               style: Theme.of(context)
@@ -190,7 +190,11 @@ class _HeadMenuCategoryWidgetState extends State<HeadMenuCategoryWidget> {
                   runSpacing: 5.h,
                   children: _filter
                       .map((filter) => GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              filter.contains('aimé')
+                                  ? data.filterByLikedCountFct()
+                                  : data.filterByCommentCountFct();
+                            },
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 10.w, vertical: 2.h),

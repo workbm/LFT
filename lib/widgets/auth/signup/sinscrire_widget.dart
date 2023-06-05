@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lft_new_project/common/utils/utils.dart';
 import 'package:lft_new_project/provider/auth/sign_up_provider.dart';
+import 'package:lft_new_project/screens/auth/login.dart';
+import 'package:lft_new_project/screens/home/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -320,7 +322,9 @@ class _SinscrireCredentialWidgetState extends State<SinscrireCredentialWidget> {
           Gap(height: size.height * 0.01),
           Center(
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, Login.routeName);
+              },
               child: const Text(
                 'J\'ai déjà un compte',
                 style: TextStyle(color: Colors.black),
@@ -348,6 +352,10 @@ class _SinscrireCredentialWidgetState extends State<SinscrireCredentialWidget> {
           _passController.text,
           _villeController.text,
           _countryController.text);
+      if (!mounted) {
+        return;
+      }
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
     } on HttpExceptionClass catch (error) {
       print('HttpException Sinscrire');
       var exceptionError = 'Une erreur se produit';

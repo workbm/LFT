@@ -1,3 +1,5 @@
+import 'package:lft_new_project/models/like_model.dart';
+
 import 'comment_model.dart';
 import 'image_model.dart';
 import 'review_model.dart';
@@ -10,6 +12,7 @@ class ServiceModel {
   double avgRating, latitude, longitude, remise;
   List<ImageModel> images;
   List<CommentModel> commentList;
+  List<LikeModel> likedList;
   List<ReviewModel> reviewList;
   List<TagModel> tagList;
   ServiceModel({
@@ -25,6 +28,7 @@ class ServiceModel {
     required this.latitude,
     required this.liked,
     required this.likedCount,
+    required this.likedList,
     required this.longitude,
     required this.commentList,
     required this.reviewList,

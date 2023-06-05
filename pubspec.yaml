@@ -87,7 +87,12 @@ flutter:
     - assets/img/google-icon.png
     - assets/img/heart.png
     - assets/img/home.png
+    - assets/img/image2.png
+    - assets/img/image3.png
     - assets/img/info-pratique.png
+    - assets/img/layer1.png
+    - assets/img/layer2.png
+    - assets/img/layer3.png
     - assets/img/location.png
     - assets/img/menu.png
     - assets/img/object1.png

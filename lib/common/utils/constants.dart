@@ -39,9 +39,11 @@ class ConstantsClass {
       'image': Assets.img.familleVisite.path,
       'api': Api.visiteByCategory,
       'catygories': [
-        CategoryModel(id: 1, name: 'category 1', url: Api.visiteByCategory),
-        CategoryModel(id: 2, name: 'category 2', url: Api.visiteByCategory),
-        CategoryModel(id: 3, name: 'category 3', url: Api.visiteByCategory),
+        CategoryModel(
+            id: 1, name: 'Lieux emblématiques', url: Api.visiteByCategory),
+        CategoryModel(
+            id: 2, name: 'Spots Instagramables', url: Api.visiteByCategory),
+        CategoryModel(id: 3, name: 'Circuits', url: Api.visiteByCategory),
       ],
     },
     ConstantsClass.laFamilleSamuseName: {
@@ -49,14 +51,18 @@ class ConstantsClass {
       'image': Assets.img.familleSamuse.path,
       'api': Api.activitiesByCategory,
       'catygories': [
-        CategoryModel(id: 1, name: 'EN FAMILLE', url: Api.activitiesByCategory),
-        CategoryModel(id: 2, name: 'EN COUPLE', url: Api.activitiesByCategory),
-        CategoryModel(id: 5, name: 'INTÉRIEUR', url: Api.activitiesByCategory),
-        CategoryModel(id: 6, name: 'INTÉRIEUR', url: Api.activitiesByCategory),
+        CategoryModel(id: 1, name: 'Plages', url: Api.activitiesByCategory),
+        CategoryModel(id: 2, name: 'Parcs', url: Api.activitiesByCategory),
         CategoryModel(
-            id: 7, name: 'ACTIVITÉS PAYANTES', url: Api.activitiesByCategory),
+            id: 5, name: 'Activités loisirs', url: Api.activitiesByCategory),
         CategoryModel(
-            id: 9, name: 'ACTIVITÉS GRATUITES', url: Api.activitiesByCategory),
+            id: 6,
+            name: 'Activités culturelles',
+            url: Api.activitiesByCategory),
+        CategoryModel(
+            id: 7, name: 'Activités nautiques', url: Api.activitiesByCategory),
+        // CategoryModel(
+        //     id: 9, name: 'ACTIVITÉS GRATUITES', url: Api.activitiesByCategory),
       ],
     },
     ConstantsClass.laFamilleGourmandeName: {
@@ -65,13 +71,11 @@ class ConstantsClass {
       'api': Api.restaurantByCategory,
       'catygories': [
         CategoryModel(
-            id: 1, name: 'Petit dejeuner', url: Api.restaurantByCategory),
+            id: 1, name: 'Petit déjeuner', url: Api.restaurantByCategory),
         CategoryModel(
-            id: 2, name: 'Dejeuner & diner', url: Api.restaurantByCategory),
+            id: 2, name: 'Déjeuner/dîner', url: Api.restaurantByCategory),
         CategoryModel(
-            id: 3,
-            name: 'Goûters & Patisseries',
-            url: Api.restaurantByCategory),
+            id: 3, name: 'Salon de thé/café', url: Api.restaurantByCategory),
         CategoryModel(id: 10, name: 'Brunch', url: Api.restaurantByCategory),
         // {'id': 1, 'name': 'Petit dejeuner'},
         // {'id': 2, 'name': 'Dejeuner & diner'},
@@ -85,11 +89,12 @@ class ConstantsClass {
       'api': Api.shopByCategory,
       'catygories': [
         CategoryModel(
-            id: 1, name: 'Centres commerciaux', url: Api.shopByCategory),
+            id: 1,
+            name: 'Boutiques artisanales/souvenirs',
+            url: Api.shopByCategory),
         CategoryModel(
-            id: 2, name: 'Boutiques de souvenirs', url: Api.shopByCategory),
-        // {'id': 1, 'name': 'Centres commerciaux'},
-        // {'id': 2, 'name': 'Boutiques de souvenirs'}
+            id: 2, name: 'Centres commerciaux', url: Api.shopByCategory),
+        CategoryModel(id: 2, name: 'Les marchés', url: Api.shopByCategory),
       ],
     },
     ConstantsClass.agendaName: {
@@ -105,14 +110,17 @@ class ConstantsClass {
       'api': Api.restaurantByCategory,
       'catygories': [
         CategoryModel(
-            id: 1, name: 'Petit dejeuner', url: Api.restaurantByCategory),
+            id: 1, name: 'Parkings gratuits', url: Api.restaurantByCategory),
         CategoryModel(
-            id: 2, name: 'Dejeuner & diner', url: Api.restaurantByCategory),
+            id: 2, name: 'Toilettes publiques', url: Api.restaurantByCategory),
         CategoryModel(
-            id: 3,
-            name: 'Goûters & Patisseries',
-            url: Api.restaurantByCategory),
-        CategoryModel(id: 10, name: 'Brunch', url: Api.restaurantByCategory),
+            id: 3, name: 'Commissariats', url: Api.restaurantByCategory),
+        CategoryModel(
+            id: 10, name: 'Bureau Change', url: Api.restaurantByCategory),
+        CategoryModel(
+            id: 10, name: 'Station service', url: Api.restaurantByCategory),
+        CategoryModel(
+            id: 10, name: 'Borne électrique', url: Api.restaurantByCategory),
       ],
     },
   };

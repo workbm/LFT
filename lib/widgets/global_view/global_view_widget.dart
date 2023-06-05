@@ -34,8 +34,8 @@ class GlobalViewWidget extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    color: Colors.amber,
+                  SizedBox(
+                    // color: Colors.amber,
                     width: 210.w,
                     child: const AutoSizeText(
                       'Où le bonheur de chaque instant fond en bouche',

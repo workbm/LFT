@@ -31,6 +31,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       bottomNavigationBar: !_noteAvisTapped
           ? const BottomNavigationBarWidget()
           : const AddCommentWidget(),
@@ -59,8 +60,8 @@ class _DetailScreenState extends State<DetailScreen> {
                   children: [
                     Row(
                       children: [
-                        Container(
-                          color: Colors.blueAccent,
+                        SizedBox(
+                          // color: Colors.blueAccent,
                           width: 250.w,
                           child: AutoSizeText(
                             widget.service.name,
@@ -224,7 +225,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         Row(
                           children: [
                             Container(
-                              color: Colors.cyan,
+                              // color: Colors.cyan,
                               // width: ,
                               child: Text(
                                 'Note et avis',
@@ -253,17 +254,19 @@ class _DetailScreenState extends State<DetailScreen> {
                                 children: [
                                   Column(
                                     children: [
-                                      Container(
-                                          color: Colors.deepOrange,
+                                      SizedBox(
+                                          // color: Colors.deepOrange,
                                           height: 40.h,
                                           width: 80.h,
-                                          child: const FittedBox(
+                                          child: FittedBox(
                                             fit: BoxFit.fill,
                                             child: Center(
-                                              child: Text(
-                                                '4.0',
-                                                // maxFontSize: 25,
-                                              ),
+                                              child: Text(widget
+                                                      .service.avgRating
+                                                      .toStringAsFixed(1)
+                                                  // '4.0',
+                                                  // maxFontSize: 25,
+                                                  ),
                                             ),
                                           )),
                                       const Gap(height: 7),
@@ -284,9 +287,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                     ],
                                   ),
                                   const HorizontalGap(width: 20),
-                                  Container(
+                                  SizedBox(
                                     width: 200.w,
-                                    color: Colors.indigoAccent,
+                                    // color: Colors.indigoAccent,
                                     child: const AutoSizeText(
                                       'les notes et les avis sont validés. Ils sont fournis par des personnes réel',
                                       // softWrap: true,
